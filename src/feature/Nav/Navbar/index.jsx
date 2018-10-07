@@ -8,7 +8,7 @@ import { Menu, Container, Button} from 'semantic-ui-react';
                 <Container>
                   <Menu.Item header>
                     <img src="assets/logo.png" alt="logo" />
-                    Re-vents
+                    Hoffyevents
                   </Menu.Item>
                   <Menu.Item name="Events" />
                   <Menu.Item>
