@@ -8,11 +8,11 @@ class EventForm extends Component {
         date:'',
         city:'',
         venue:'',
-        hosted:''
+        hostedBy:''
     }
-    onFormSubmit = (event) =>
+    onFormSubmit = () =>
     {
-
+this.props.handlerCreateNewEvent(this.state)
 
     }
 
@@ -52,14 +52,14 @@ handerInputOnChange = (event) =>
                 <Form.Field>
                   <label>Venue</label>
                   <input
-                   name="venu"
+                   name="venue"
                   onChange={this.handerInputOnChange}
                 placeholder="Enter the Venue of the event" />
                 </Form.Field>
                 <Form.Field>
                   <label>Hosted By</label>
                   <input
-                   name="hosted"
+                   name="hostedBy"
                   onChange={this.handerInputOnChange}
                   placeholder="Enter the name of person hosting" />
                 </Form.Field>

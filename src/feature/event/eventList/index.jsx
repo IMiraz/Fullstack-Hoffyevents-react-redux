@@ -8,7 +8,7 @@ import EventListItem  from './eventListItem/'
     return (
       <div>
       <h1>Event List</h1>
-       {events.map(event => (
+       {events.reverse().map(event => (
         <EventListItem key={event.id} event={event}/>
        ))}
 
