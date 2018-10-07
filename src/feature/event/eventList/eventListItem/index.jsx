@@ -4,7 +4,7 @@ import EventListAttende from '../eventListAttende/index'
 
  class EventListItem extends Component {
   render() {
-       const {event,handlerEditEvent} = this.props
+       const {event,handlerEditEventOpen} = this.props
     return (
              <Segment.Group>
                 <Segment>
@@ -36,7 +36,7 @@ import EventListAttende from '../eventListAttende/index'
                 </Segment>
                 <Segment clearing>
                 <span>{event.description}</span>
-                  <Button as="a" onClick={handlerEditEvent(event)} color="teal" floated="right" content="View" />
+                  <Button as="a" onClick={handlerEditEventOpen(event)} color="teal" floated="right" content="View" />
                 </Segment>
               </Segment.Group>
 

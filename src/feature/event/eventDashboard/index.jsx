@@ -138,9 +138,9 @@ handlerCreateNewEvent = (newEvent) => {
   })
 
 }
-handlerEditEvent = (eventToUpdate) =>() => {
+handlerEditEventOpen= (eventToOpen) =>() => {
   this.setState({
-     selectEvent:eventToUpdate,
+     selectEvent:eventToOpen,
      isFormOpen:true
   })
 
@@ -156,7 +156,7 @@ handlerEditEvent = (eventToUpdate) =>() => {
            <GridColumn width={10}>
            <EventList
            events={this.state.events}
-           handlerEditEvent={this.handlerEditEvent}
+           handlerEditEventOpen={this.handlerEditEventOpen}
             />
            </GridColumn>
            <GridColumn width={6}>
