@@ -30,8 +30,15 @@ this.props.handlerCreateNewEvent(this.state)
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('current:', this.props.selectEvent)
-        console.log('next:', nextProps.selectEvent)
+        // console.log('current:', this.props.selectEvent)
+        // console.log('next:', nextProps.selectEvent)
+
+        if(nextProps.selectEvent !== this.props.selectEvent) {
+            this.setState({
+                event:nextProps.selectEvent|| emptyEvents
+
+            })
+        }
 
     }
 
