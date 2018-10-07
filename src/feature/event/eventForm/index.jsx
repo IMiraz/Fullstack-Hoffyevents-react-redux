@@ -14,9 +14,15 @@ class EventForm extends Component {
     state = {
         event:emptyEvents
     }
-    onFormSubmit = () =>
+    onFormSubmit = (evt) =>
     {
-this.props.handlerCreateNewEvent(this.state)
+  if(this.state.event.id)
+  {
+      this.props.handleUpdateEvent(this.state.event)
+  }
+
+  this.props.handlerCreateNewEvent(this.state.event)
+
     }
     componentDidMount() {
         console.log(this.props.selectEvent)
@@ -44,14 +50,18 @@ this.props.handlerCreateNewEvent(this.state)
 
 handerInputOnChange = (event) =>
 {
-    this.setState({
-        [event.target.name]:event.target.value
+const newEvent = this.state.event;
+        newEvent[event.target.name]=event.target.value
+        this.setState({
+      event:newEvent
         })
+
 }
 
 
   render() {
        const{handlerFormCancle} = this.props;
+const {event} = this.state
     return (
             <Segment>
               <Form onSubmit={this.onFormSubmit}>
@@ -59,7 +69,7 @@ handerInputOnChange = (event) =>
                   <label>Event Title</label>
                   <input
                   name="title"
-                  value={this.state.event.title}
+                  value={event.title}
                 onChange={this.handerInputOnChange} placeholder="First Name" />
                 </Form.Field>
                 <Form.Field>
@@ -67,14 +77,14 @@ handerInputOnChange = (event) =>
                   <input
                   type="date"
                   name="date"
-                  value={this.state.event.date}
+                  value={event.date}
                   onChange={this.handerInputOnChange}  placeholder="Event Date" />
                 </Form.Field>
                 <Form.Field>
                   <label>City</label>
                   <input
                   city="city"
-                  value={this.state.event.city}
+                  value={event.city}
                   onChange={this.handerInputOnChange}
                   placeholder="City event is taking place" />
                 </Form.Field>
@@ -82,7 +92,7 @@ handerInputOnChange = (event) =>
                   <label>Venue</label>
                   <input
                    name="venue"
-                   value={this.state.event.venue}
+                   value={event.venue}
                   onChange={this.handerInputOnChange}
                 placeholder="Enter the Venue of the event" />
                 </Form.Field>
@@ -90,7 +100,7 @@ handerInputOnChange = (event) =>
                   <label>Hosted By</label>
                   <input
                    name="hostedBy"
-                   value={this.state.event.hostedBy}
+                   value={event.hostedBy}
                   onChange={this.handerInputOnChange}
                   placeholder="Enter the name of person hosting" />
                 </Form.Field>

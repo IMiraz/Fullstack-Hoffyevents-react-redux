@@ -138,15 +138,36 @@ handlerCreateNewEvent = (newEvent) => {
   })
 
 }
+
 handlerEditEventOpen= (eventToOpen) =>() => {
   this.setState({
      selectEvent:eventToOpen,
      isFormOpen:true
   })
 
+}
+
+handleUpdateEvent = (updatedEvent) => {
+
+  this.setState({
+    events:this.state.events.map(event => {
+       if(event.id === updatedEvent.id) {
+         return Object.assign({}, updatedEvent);
+       }
+       else {
+         return event
+       }
+    }),
+    isFormOpen:false,
+    selectEvent:null
+
+  })
+
 
 
 }
+
+
 
   render()
   {
@@ -163,6 +184,7 @@ handlerEditEventOpen= (eventToOpen) =>() => {
            <Button positive  onClick={this.handlerFormOpen} content='Create Event'/>
           {this.state.isFormOpen &&
             <EventForm
+            handleUpdateEvent={this.handleUpdateEvent}
             selectEvent={this.state.selectEvent}
             handlerFormCancle={this.handlerFormCancle}
             handlerCreateNewEvent={this.handlerCreateNewEvent}
