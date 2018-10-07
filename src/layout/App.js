@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import { Button  } from 'semantic-ui-react';
+import EeventDashboard from '../feature/event/eventDashboard'
+import EventDashboard from '../feature/event/eventDashboard';
+
 class App extends Component {
   render() {
     return (
       <div>
-<h1>hello react 13</h1>
-
+      <EventDashboard/>
       </div>
     );
   }
