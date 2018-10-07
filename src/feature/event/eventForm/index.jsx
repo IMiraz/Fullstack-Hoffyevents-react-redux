@@ -18,7 +18,7 @@ class EventForm extends Component {
     {
 this.props.handlerCreateNewEvent(this.state)
     }
-    componentWillMount() {
+    componentDidMount() {
         console.log(this.props.selectEvent)
           if(this.props.selectEvent !== null)
           {
@@ -27,6 +27,12 @@ this.props.handlerCreateNewEvent(this.state)
               })
 
           }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log('current:', this.props.selectEvent)
+        console.log('next:', nextProps.selectEvent)
+
     }
 
 handerInputOnChange = (event) =>
