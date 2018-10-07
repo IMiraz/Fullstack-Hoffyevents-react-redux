@@ -28,10 +28,10 @@ import EventListAttende from '../eventListAttende/index'
                 </Segment>
                 <Segment secondary>
                   <List horizontal>
-                  <EventListAttende/>
-                  <EventListAttende/>
-                  <EventListAttende/>
-                  <EventListAttende/>
+                   {event.attendees.map(attendee => (
+            <EventListAttende key={attendee.id} attendee={attendee}/>
+                   ))}
+
                   </List>
                 </Segment>
                 <Segment clearing>
