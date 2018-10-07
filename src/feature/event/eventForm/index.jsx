@@ -1,19 +1,32 @@
 import React, { Component } from 'react'
 import { Segment, Form, Button  } from 'semantic-ui-react'
 
-class EventForm extends Component {
-
-    state = {
-        title:'',
+const emptyEvents = {
+       title:'',
         date:'',
         city:'',
         venue:'',
         hostedBy:''
+}
+
+class EventForm extends Component {
+
+    state = {
+        event:emptyEvents
     }
     onFormSubmit = () =>
     {
 this.props.handlerCreateNewEvent(this.state)
+    }
+    componentWillMount() {
+        console.log(this.props.selectEvent)
+          if(this.props.selectEvent !== null)
+          {
+              this.setState({
+                  event:this.props.selectEvent
+              })
 
+          }
     }
 
 handerInputOnChange = (event) =>
@@ -33,6 +46,7 @@ handerInputOnChange = (event) =>
                   <label>Event Title</label>
                   <input
                   name="title"
+                  value={this.state.event.title}
                 onChange={this.handerInputOnChange} placeholder="First Name" />
                 </Form.Field>
                 <Form.Field>
@@ -40,12 +54,14 @@ handerInputOnChange = (event) =>
                   <input
                   type="date"
                   name="date"
+                  value={this.state.event.date}
                   onChange={this.handerInputOnChange}  placeholder="Event Date" />
                 </Form.Field>
                 <Form.Field>
                   <label>City</label>
                   <input
                   city="city"
+                  value={this.state.event.city}
                   onChange={this.handerInputOnChange}
                   placeholder="City event is taking place" />
                 </Form.Field>
@@ -53,6 +69,7 @@ handerInputOnChange = (event) =>
                   <label>Venue</label>
                   <input
                    name="venue"
+                   value={this.state.event.venue}
                   onChange={this.handerInputOnChange}
                 placeholder="Enter the Venue of the event" />
                 </Form.Field>
@@ -60,6 +77,7 @@ handerInputOnChange = (event) =>
                   <label>Hosted By</label>
                   <input
                    name="hostedBy"
+                   value={this.state.event.hostedBy}
                   onChange={this.handerInputOnChange}
                   placeholder="Enter the name of person hosting" />
                 </Form.Field>
