@@ -7,6 +7,8 @@ import PhotoPage from '../photoPage'
 import AboutPage from '../aboutPage'
 import BasicPage from '../basicPage'
 
+//React done now emplement redux ;)
+
 const SettingsDasboard = () => {
   return (
     <div>
