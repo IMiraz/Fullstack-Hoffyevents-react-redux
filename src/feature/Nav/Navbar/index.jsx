@@ -35,11 +35,19 @@ import SignOutMenu from '../SignOutMenu'
                     Hoffyevents
                   </Menu.Item>
                   <Menu.Item name="Events" as={NavLink} to="/events" />
+                  {isAuthenticated &&
                   <Menu.Item name="People" as={NavLink} to="/people" />
+                  }
+                  {isAuthenticated &&
                   <Menu.Item>
-                    <Button floated="right" positive inverted content="Create Event" />
+                    <Button
+                    floated="right"
+                    positive inverted content="Create Event" />
                   </Menu.Item>
+                }
                   {isAuthenticated ?<SignedInMenu handleSignout={this.handleSignout} /> : <SignOutMenu handleSigin={this.handleSigin}/> }
+
+
 
 
                 </Container>
