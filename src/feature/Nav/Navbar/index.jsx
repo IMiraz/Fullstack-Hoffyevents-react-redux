@@ -5,7 +5,26 @@ import SignedInMenu from '../signenInMenu'
 import SignOutMenu from '../SignOutMenu'
 
  class Navbar extends Component {
+   state = {
+     isAuthenticated:false
+
+   }
+
+   handleSignout = () => {
+     this.setState({
+        isAuthenticated:false
+     })
+
+   }
+
+   handleSigin = () => {
+     this.setState({
+         isAuthenticated:true
+     })
+
+   }
   render() {
+     const {isAuthenticated} = this.state;
     return (
               <Menu inverted fixed="top">
                 <Container>
@@ -18,8 +37,7 @@ import SignOutMenu from '../SignOutMenu'
                   <Menu.Item>
                     <Button floated="right" positive inverted content="Create Event" />
                   </Menu.Item>
-                  <SignedInMenu/>
-                  <SignOutMenu/>
+                  {isAuthenticated ?<SignedInMenu handleSignout={this.handleSignout} /> : <SignOutMenu handleSigin={this.handleSigin}/> }
 
 
                 </Container>
