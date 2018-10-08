@@ -24,6 +24,7 @@ import EventListAttende from '../eventListAttende/index'
                   <span>
                     <Icon name="clock" /> {event.date} |
                     <Icon name="marker" /> {event.venue}
+
                   </span>
                 </Segment>
                 <Segment secondary>
@@ -36,6 +37,7 @@ import EventListAttende from '../eventListAttende/index'
                 </Segment>
                 <Segment clearing>
                 <span>{event.description}</span>
+
                   <Button as="a" onClick={handlerEditEventOpen(event)} color="teal" floated="right" content="View" />
                 </Segment>
               </Segment.Group>

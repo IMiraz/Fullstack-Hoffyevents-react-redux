@@ -111,8 +111,6 @@ class EventDashboard extends Component {
     events:eventsData,
     isFormOpen:false,
     selectEvent:null
-
-
   }
 
 handlerFormOpen = () => {
@@ -129,6 +127,7 @@ handlerFormOpen = () => {
 }
 
 handlerCreateNewEvent = (newEvent) => {
+
   newEvent.id=cuid(),
   newEvent.hostPhotoURL='/assets/user.png';
   const updateEvents = [...this.state.events, newEvent]
@@ -146,9 +145,7 @@ handlerEditEventOpen= (eventToOpen) =>() => {
   })
 
 }
-
 handleUpdateEvent = (updatedEvent) => {
-
   this.setState({
     events:this.state.events.map(event => {
        if(event.id === updatedEvent.id) {
@@ -163,9 +160,9 @@ handleUpdateEvent = (updatedEvent) => {
 
   })
 
-
-
 }
+
+
 
 
 
@@ -178,6 +175,9 @@ handleUpdateEvent = (updatedEvent) => {
            <EventList
            events={this.state.events}
            handlerEditEventOpen={this.handlerEditEventOpen}
+
+
+
             />
            </GridColumn>
            <GridColumn width={6}>

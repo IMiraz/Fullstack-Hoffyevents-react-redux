@@ -16,11 +16,12 @@ class EventForm extends Component {
     }
     onFormSubmit = (evt) =>
     {
+        evt.preventDefault();
+
   if(this.state.event.id)
   {
-      this.props.handleUpdateEvent(this.state.event)
+     return this.props.handleUpdateEvent(this.state.event)
   }
-
   this.props.handlerCreateNewEvent(this.state.event)
 
     }
@@ -83,7 +84,7 @@ const {event} = this.state
                 <Form.Field>
                   <label>City</label>
                   <input
-                  city="city"
+                  name="city"
                   value={event.city}
                   onChange={this.handerInputOnChange}
                   placeholder="City event is taking place" />
