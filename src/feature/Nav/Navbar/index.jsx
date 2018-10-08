@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Menu, Container, Button} from 'semantic-ui-react';
-import {NavLink, Link} from 'react-router-dom'
+import {NavLink, Link, withRouter} from 'react-router-dom'
 import SignedInMenu from '../signenInMenu'
 import SignOutMenu from '../SignOutMenu'
 
@@ -14,6 +14,8 @@ import SignOutMenu from '../SignOutMenu'
      this.setState({
         isAuthenticated:false
      })
+
+     this.props.history.push('/')
 
    }
 
@@ -47,4 +49,4 @@ import SignOutMenu from '../SignOutMenu'
 
 }
 
-export default Navbar
+export default withRouter(Navbar)
