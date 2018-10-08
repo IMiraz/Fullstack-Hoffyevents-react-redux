@@ -4,7 +4,7 @@ import EventListItem  from './eventListItem/'
  class EventList extends Component {
   render() {
 
-     const {events, handlerEditEventOpen } = this.props;
+     const {events, handlerEditEventOpen,deleteEvent } = this.props;
     return (
       <div>
       <h1>Event List</h1>
@@ -13,7 +13,7 @@ import EventListItem  from './eventListItem/'
         key={event.id}
         event={event}
         handlerEditEventOpen={handlerEditEventOpen}
-      
+        deleteEvent={deleteEvent}
          />
        ))}
 

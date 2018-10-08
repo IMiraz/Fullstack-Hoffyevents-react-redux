@@ -164,7 +164,12 @@ handleUpdateEvent = (updatedEvent) => {
 
 
 
-
+handleDeleteEvent = (eventId) => () => {
+  const updatedEvents = this.state.events.filter(e => e.id !== eventId);
+  this.setState({
+    events: updatedEvents
+  })
+}
 
   render()
   {
@@ -175,7 +180,7 @@ handleUpdateEvent = (updatedEvent) => {
            <EventList
            events={this.state.events}
            handlerEditEventOpen={this.handlerEditEventOpen}
-
+deleteEvent={this.handleDeleteEvent}
 
 
             />
