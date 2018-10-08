@@ -1,6 +1,6 @@
 import React from 'react'
 
-const  Home = () => {
+const  Home = ({history}) => {
   return (
    <div>
          <div className="ui inverted vertical masthead center aligned segment">
@@ -14,7 +14,7 @@ const  Home = () => {
                <div className="content">Hoffyevents</div>
              </h1>
              <h2>Do whatever you want to do</h2>
-             <div className="ui huge white inverted button">
+             <div onClick={() =>history.push('/events')} className="ui huge white inverted button">
                Get Started
                <i className="right arrow icon" />
              </div>
