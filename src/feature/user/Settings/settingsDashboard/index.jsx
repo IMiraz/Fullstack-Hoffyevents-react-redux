@@ -1,5 +1,6 @@
 import React from 'react'
 import {GridColumn, Grid} from 'semantic-ui-react'
+import SettingsNav from '../settingsNav'
 
 const SettingsDasboard = () => {
   return (
@@ -9,7 +10,7 @@ const SettingsDasboard = () => {
  <h1>Settings </h1>
     </GridColumn>
     <GridColumn width={4}>
-    <h1>Nav</h1>
+    <SettingsNav/>
 
     </GridColumn>
     </Grid>
