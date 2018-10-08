@@ -31,7 +31,7 @@ import SignOutMenu from '../SignOutMenu'
               <Menu inverted fixed="top">
                 <Container>
                   <Menu.Item header as={Link} to="/">
-                    <img src="assets/logo.png" alt="logo" />
+                    <img src="/assets/logo.png" alt="logo" />
                     Hoffyevents
                   </Menu.Item>
                   <Menu.Item name="Events" as={NavLink} to="/events" />
