@@ -1,6 +1,6 @@
 
 const initialState = {
-     date:42
+     data:42
 }
 
 const testReducer = (state = initialState, action) => {

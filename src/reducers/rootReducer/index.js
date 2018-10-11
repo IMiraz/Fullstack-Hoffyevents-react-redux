@@ -2,8 +2,8 @@ import {combineReducers} from 'redux'
 import testReducer  from '../testReducer'
 
 
-const rooReducer = combineReducers({
+const rootReducer = combineReducers({
      test:testReducer
 })
 
-export default rooReducer
+export default rootReducer

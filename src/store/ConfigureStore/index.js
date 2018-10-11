@@ -3,7 +3,7 @@ import rootReducer from '../../reducers/rootReducer'
 
 export const  ConfigureStore = (preloadState) => {
     const middleWares =[];
-    const middleWareEnhancer = applyMiddleware(..middleWares);
+    const middleWareEnhancer = applyMiddleware(...middleWares);
     
     const storeEnhancers = [middleWareEnhancer];
 
