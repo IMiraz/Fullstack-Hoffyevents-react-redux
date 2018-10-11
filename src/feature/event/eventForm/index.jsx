@@ -43,7 +43,6 @@ class EventForm extends Component {
         if(nextProps.selectEvent !== this.props.selectEvent) {
             this.setState({
                 event:nextProps.selectEvent|| emptyEvents
-
             })
         }
 

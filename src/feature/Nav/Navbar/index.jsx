@@ -35,6 +35,7 @@ import SignOutMenu from '../SignOutMenu'
                     Hoffyevents
                   </Menu.Item>
                   <Menu.Item name="Events" as={NavLink} to="/events" />
+                  <Menu.Item name="Test" as={NavLink} to="/test" />
                   {isAuthenticated &&
                   <Menu.Item name="People" as={NavLink} to="/people" />
                   }
