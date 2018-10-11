@@ -18,7 +18,4 @@ export const  ConfigureStore = (preloadState) => {
 
     return store
 
-
-
-
 }
