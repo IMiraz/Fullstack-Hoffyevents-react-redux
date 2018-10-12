@@ -11,7 +11,7 @@ export const createEvent = (event) => {
      }
 }
 
-export const updatedEvent = (event) => {
+export const updateEvent = (event) => {
      return {
           type:UPDATE_EVENT,
           payload:{
