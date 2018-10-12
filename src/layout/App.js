@@ -26,7 +26,7 @@ class App extends Component {
           <NavBar/>
           <Container className="main">
             <Route path='/events' component={EventDashboard} />
-            <Route path='/events/:id' component={EventDetailedPage} />
+            <Route path='/event/:id' component={EventDetailedPage} />
             <Route path='/people' component={PeopleDashboard} />
             <Route path='/profile/:id' component={UserDetailed} />
             <Route path='/settings' component={SettingsDashboard} />
