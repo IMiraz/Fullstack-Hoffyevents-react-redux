@@ -1,5 +1,5 @@
 import {createReducer} from '../../../common/util/reducerUtil'
-import {CREATE_EVENT, DELELTE_EVENT, UPDATE_EVENT}  from '../eventActions/actionsType'
+import {CREATE_EVENT, DELETE_EVENT, UPDATE_EVENT}  from '../eventActions/actionsType'
 
 
 const initialState = [
@@ -126,6 +126,6 @@ export const deleteEvent = (state, payload) => {
 export default createReducer(initialState, {
     [CREATE_EVENT]:createEvent,
     [UPDATE_EVENT]:updateEvent,
-    [DELELTE_EVENT]:deleteEvent
+    [DELETE_EVENT]:deleteEvent
 })
 

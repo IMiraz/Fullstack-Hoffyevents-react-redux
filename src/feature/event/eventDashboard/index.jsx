@@ -4,11 +4,22 @@ import EventList from '../eventList'
 import EventForm from '../eventForm'
 import {connect}  from 'react-redux'
 import cuid from 'cuid'
+import {createEvent, deleteEvent, updatedEvent} from '../../event/eventActions/actionsCreator'
 
 const maspState = (state) => 
 ({
   eventDatas:state.event
 })
+
+
+const actions ={
+  createEvent,
+  deleteEvent,
+  updatedEvent
+  
+}
+
+
 
 class EventDashboard extends Component {
 
@@ -70,6 +81,8 @@ handleUpdateEvent = (updatedEvent) => {
 
 
 handleDeleteEvent = (eventId) => () => {
+
+  
   const updatedEvents = this.state.events.filter(e => e.id !== eventId);
   this.setState({
     events: updatedEvents
@@ -78,6 +91,7 @@ handleDeleteEvent = (eventId) => () => {
 
   render()
   {
+   // console.log(this.props.createEvent);
     //const  {eventDatas} = this.props
 
     return (
@@ -107,4 +121,4 @@ deleteEvent={this.handleDeleteEvent}
   }
 }
 
-export default connect(maspState) (EventDashboard)
+export default connect(maspState, actions) (EventDashboard)

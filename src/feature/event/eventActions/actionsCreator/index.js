@@ -1,7 +1,8 @@
-import {CREATE_EVENT, DELETE_EVENT, UPDATE_EVENT} from '../actionsCreator'
+
+import {CREATE_EVENT, DELETE_EVENT, UPDATE_EVENT} from '../actionsType'
 
 
-export const CreateEvent = (event) => {
+export const createEvent = (event) => {
      return {
          type:CREATE_EVENT,
          payload:{
@@ -10,7 +11,7 @@ export const CreateEvent = (event) => {
      }
 }
 
-export const UpdateEvent = (event) => {
+export const updatedEvent = (event) => {
      return {
           type:UPDATE_EVENT,
           payload:{
@@ -19,7 +20,7 @@ export const UpdateEvent = (event) => {
      }
 }
 
-export const DeleteEvent = (eventId) => {
+export const deleteEvent = (eventId) => {
     return {
         type:DELETE_EVENT,
         payload:{
