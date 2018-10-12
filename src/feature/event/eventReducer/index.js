@@ -111,7 +111,7 @@ export const createEvent = (state, payload) => {
 
 export const updateEvent =(state, payload) => {
     return [
-         ...state.filter(event => event.id ! == payload.event.id),
+         ...state.filter(event => event.id !== payload.event.id),
          Object.assign({}, payload.event)
     ]
 }

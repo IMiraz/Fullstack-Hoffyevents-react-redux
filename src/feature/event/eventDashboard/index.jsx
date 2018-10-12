@@ -2,12 +2,18 @@ import React, { Component } from 'react'
 import { Grid, GridColumn, Button } from 'semantic-ui-react';
 import EventList from '../eventList'
 import EventForm from '../eventForm'
+import {connect}  from 'react-redux'
 import cuid from 'cuid'
+
+const maspState = (state) => 
+({
+  eventDatas:state.event
+})
 
 class EventDashboard extends Component {
 
+  
   state = {
-    events:eventsData,
     isFormOpen:false,
     selectEvent:null
   }
@@ -72,12 +78,13 @@ handleDeleteEvent = (eventId) => () => {
 
   render()
   {
+    //const  {eventDatas} = this.props
 
     return (
         <Grid>
            <GridColumn width={10}>
            <EventList
-           events={this.state.events}
+           events={this.props.eventDatas}
            handlerEditEventOpen={this.handlerEditEventOpen}
 deleteEvent={this.handleDeleteEvent}
 
@@ -100,4 +107,4 @@ deleteEvent={this.handleDeleteEvent}
   }
 }
 
-export default EventDashboard
+export default connect(maspState) (EventDashboard)
