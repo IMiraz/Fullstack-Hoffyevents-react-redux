@@ -4,7 +4,7 @@ import {Route, Switch} from 'react-router-dom';
 import NavBar from '../feature/Nav/Navbar/';
 import Home from '../feature/Home';
 import EventDashboard from '../feature/event/eventDashboard'
-import EventDetailedPage  from '../feature/event/eventDetailed'
+import EventDetailedPage  from '../feature/event/eventDetailedPage'
 import PeopleDashboard from '../feature/user/PeopleDashboard';
 import UserDetailed from '../feature/user/userDetailed';
 import EventForm from '../feature/event/eventForm';
