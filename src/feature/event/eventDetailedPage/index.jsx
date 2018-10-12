@@ -45,7 +45,7 @@ const EventDetailedPage = () => {
     
       </GridColumn>
       <GridColumn width={6}>
-       <EventDetailedSidebar/>
+       <EventDetailedSidebar attendees={event.attendees}/>
  </GridColumn>
 
     </Grid>

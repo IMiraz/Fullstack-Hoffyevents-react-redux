@@ -2,7 +2,7 @@ import React from 'react'
 
 import {Segment, List, Label, Item} from 'semantic-ui-react'
 
-const eventDetailedSidebar = () => {
+const eventDetailedSidebar = ({attendees}) => {
   return (
     <div>
       <Segment
@@ -13,25 +13,30 @@ const eventDetailedSidebar = () => {
         inverted
         color="teal"
       >
-        2 People Going
+       {attendees && attendees.length} {attendees && attendees.length ==1? 'person':'people'}
+     
       </Segment>
       <Segment attached>
         <List relaxed divided>
-          <Item style={{ position: 'relative' }}>
-            <Label
-              style={{ position: 'absolute' }}
-              color="orange"
-              ribbon="right"
-            >
-              Host
-            </Label>
-            <Item.Image size="tiny" src="/assets/user.png" />
-            <Item.Content verticalAlign="middle">
-              <Item.Header as="h3">
-                <a>Attendee Name</a>
-              </Item.Header>
-            </Item.Content>
-          </Item>
+
+        {attendees && attendees.map(attened => (
+ <Item style={{ position: 'relative' }}>
+ <Label
+   style={{ position: 'absolute' }}
+   color="orange"
+   ribbon="right"
+ >
+   Host
+ </Label>
+ <Item.Image size="tiny" src="/assets/user.png" />
+ <Item.Content verticalAlign="middle">
+   <Item.Header as="h3">
+     <a>{attened.name}</a>
+   </Item.Header>
+ </Item.Content>
+</Item>
+        ))}
+         
         </List>
       </Segment>
     </div>
