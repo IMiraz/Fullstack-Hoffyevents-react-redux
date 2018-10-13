@@ -75,7 +75,6 @@ const newEvent = this.state.event;
 
 
   render() {
-       const{handlerFormCancle} = this.props;
 const {event} = this.state
     return (
             <Segment>
@@ -122,7 +121,7 @@ const {event} = this.state
                 <Button positive type="submit">
                   Submit
                 </Button>
-                <Button type="button" onClick={handlerFormCancle}>Cancel</Button>
+                <Button type="button" onClick={this.props.history.goBack}>Cancel</Button>
               </Form>
             </Segment>
     )
