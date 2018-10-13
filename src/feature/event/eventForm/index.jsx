@@ -80,13 +80,7 @@ const {event} = this.state
     return (
             <Segment>
               <Form onSubmit={this.onFormSubmit}>
-                <Form.Field>
-                  <label>Event Title</label>
-                  <input
-                  name="title"
-                  value={event.title}
-                onChange={this.handerInputOnChange} placeholder="First Name" />
-                </Form.Field>
+              <Field name="'title" placeholder="title" component="input" type="text"/>
                 <Form.Field>
                   <label>Event Date</label>
                   <input
