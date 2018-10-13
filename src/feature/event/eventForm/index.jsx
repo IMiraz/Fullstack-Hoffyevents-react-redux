@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Segment, Form, Button  } from 'semantic-ui-react'
 import {connect} from 'react-redux'
+import {reduxForm, Field} from 'redux-form'
 import {createEvent, updateEvent} from '../eventActions/actionsCreator'
 import cuid from 'cuid'
 
@@ -128,4 +129,4 @@ const {event} = this.state
   }
 }
 
-export default connect(mapStateToProps, actions)(EventForm)
+export default connect(mapStateToProps, actions) (reduxForm({form:'eventForm'})(EventForm))
