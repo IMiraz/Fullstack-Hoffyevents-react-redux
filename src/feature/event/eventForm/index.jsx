@@ -93,6 +93,7 @@ class EventForm extends Component {
                placeholder="Give your event category name"
                 component={SelectInput}
                 options={category}
+                multiple={true}
                 type="text"/>
                 <Field
                name="description" 
