@@ -43,7 +43,7 @@ import SignOutMenu from '../SignOutMenu'
                   <Menu.Item>
                     <Button
                     floated="right"
-                     as={NavLink}
+                     as={Link}
                      to="/createEvent"
                     positive inverted content="Create Event" />
                   </Menu.Item>
