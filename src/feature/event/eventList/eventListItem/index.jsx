@@ -5,7 +5,7 @@ import EventListAttende from '../eventListAttende/index'
 
  class EventListItem extends Component {
   render() {
-       const {event,handlerEditEventOpen, deleteEvent} = this.props
+       const {event, deleteEvent} = this.props
     return (
              <Segment.Group>
                 <Segment>

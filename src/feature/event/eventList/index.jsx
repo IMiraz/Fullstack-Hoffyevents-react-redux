@@ -7,7 +7,6 @@ import EventListItem  from './eventListItem/'
      const {events, handlerEditEventOpen,deleteEvent } = this.props;
     return (
       <div>
-      <h1>Event List</h1>
        {events.map(event => (
         <EventListItem
         key={event.id}
