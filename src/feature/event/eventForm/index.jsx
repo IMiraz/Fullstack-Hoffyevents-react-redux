@@ -4,7 +4,8 @@ import {connect} from 'react-redux'
 import {reduxForm, Field} from 'redux-form'
 import {createEvent, updateEvent} from '../eventActions/actionsCreator'
 import cuid from 'cuid'
-import TextInput from '../../../common/reduxForm/textInput/'
+import TextInput from '../../../common/reduxForm/textInput'
+import TextArea from '../../../common/reduxForm/textArea'
 
 
 const actions = {
@@ -84,8 +85,9 @@ class EventForm extends Component {
                 type="text"/>
                 <Field
                name="description" 
+               rows={3}
                placeholder="Tell us about your event descriptions"
-                component={TextInput}
+                component={TextArea}
                 type="text"/>
                  <Header sub color="teal" content="Event Location Details"/>
                 <Field
