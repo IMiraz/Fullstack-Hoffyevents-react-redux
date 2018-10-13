@@ -6,6 +6,7 @@ import {createEvent, updateEvent} from '../eventActions/actionsCreator'
 import cuid from 'cuid'
 import TextInput from '../../../common/reduxForm/textInput'
 import TextArea from '../../../common/reduxForm/textArea'
+import SelectInput from '../../../common/reduxForm/SelectInput'
 
 
 const actions = {
@@ -32,6 +33,16 @@ const eventId= ownProps.match.params.id;
     event
   }
 }
+
+
+const category = [
+  {key: 'drinks', text: 'Drinks', value: 'drinks'},
+  {key: 'culture', text: 'Culture', value: 'culture'},
+  {key: 'film', text: 'Film', value: 'film'},
+  {key: 'food', text: 'Food', value: 'food'},
+  {key: 'music', text: 'Music', value: 'music'},
+  {key: 'travel', text: 'Travel', value: 'travel'},
+];
 
 class EventForm extends Component {
 
@@ -63,7 +74,6 @@ class EventForm extends Component {
             }
 
     }
-  
 
   render() {
     return (
@@ -81,7 +91,8 @@ class EventForm extends Component {
                 <Field
                name="category" 
                placeholder="Give your event category name"
-                component={TextInput}
+                component={SelectInput}
+                options={category}
                 type="text"/>
                 <Field
                name="description" 
