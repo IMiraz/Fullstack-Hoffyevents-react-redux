@@ -122,4 +122,4 @@ class EventForm extends Component {
   }
 }
 
-export default connect(mapStateToProps, actions) (reduxForm({form:'eventForm'})(EventForm))
+export default connect(mapStateToProps, actions) (reduxForm({form:'eventForm', enableReinitialize:true})(EventForm))
