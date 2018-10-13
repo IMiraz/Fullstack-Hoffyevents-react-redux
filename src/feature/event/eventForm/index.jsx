@@ -7,7 +7,8 @@ import {createEvent, updateEvent} from '../eventActions/actionsCreator'
 import cuid from 'cuid'
 import TextInput from '../../../common/reduxForm/textInput'
 import TextArea from '../../../common/reduxForm/textArea'
-import SelectInput from '../../../common/reduxForm/SelectInput'
+import SelectInput from '../../../common/reduxForm/SelectInput';
+import DateInput from '../../../common/reduxForm/DateInput'
 
 
 
@@ -130,8 +131,12 @@ class EventForm extends Component {
                 type="text"/>
                 <Field
                name="date" 
-               placeholder="Date"
-                component={TextInput}
+               placeholder="Event Date"
+                component={DateInput}
+                dateFormat="DD/MM/YYYY h:mm"
+                timeFormat ="h:mm"
+                showTimeSelect
+
                 type="text"/>
                 <Button disabled={invalid || submitting || pristine} positive type="submit">
                   Submit
