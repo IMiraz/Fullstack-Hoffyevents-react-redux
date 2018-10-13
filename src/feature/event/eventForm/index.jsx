@@ -43,7 +43,8 @@ class EventForm extends Component {
 
             if(this.state.event.id)
             {
-               this.props.handleUpdateEvent(this.state.event)
+               this.props.updateEvent(this.state.event)
+               this.props.history.goBack();
             }
             else {
               const newEvent = {
