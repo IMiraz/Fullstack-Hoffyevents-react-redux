@@ -3,6 +3,7 @@ import { Segment, Form, Button, Grid,Header } from 'semantic-ui-react'
 import {connect} from 'react-redux';
 import {composeValidators,combineValidators, isRequired, hasLengthGreaterThan} from 'revalidate'
 import {reduxForm, Field} from 'redux-form'
+import moment from 'moment'
 import {createEvent, updateEvent} from '../eventActions/actionsCreator'
 import cuid from 'cuid'
 import TextInput from '../../../common/reduxForm/textInput'
@@ -70,7 +71,7 @@ class EventForm extends Component {
     onFormSubmit =values =>
     {
       // console.log(values)
-       
+    values.date= moment(values.date).format();   
 
             if(this.props.initialValues.id)
             {
@@ -92,6 +93,7 @@ class EventForm extends Component {
     }
 
   render() {
+
     const {invalid, submitting, pristine} = this.props;
     return (
       <Grid>
