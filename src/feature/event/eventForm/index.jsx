@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {reduxForm, Field} from 'redux-form'
 import {createEvent, updateEvent} from '../eventActions/actionsCreator'
 import cuid from 'cuid'
+import TextInput from '../../../common/reduxForm/textInput/'
 
 
 const actions = {
@@ -80,7 +81,11 @@ const {event} = this.state
     return (
             <Segment>
               <Form onSubmit={this.onFormSubmit}>
-              <Field name="'title" placeholder="title" component="input" type="text"/>
+              <Field
+               name="'title" 
+               placeholder="title"
+                component={TextInput}
+                type="text"/>
                 <Form.Field>
                   <label>Event Date</label>
                   <input
