@@ -18,19 +18,13 @@ const actions = {
 const mapStateToProps = (state, ownProps) => {
 const eventId= ownProps.match.params.id;
 
-  let event = {
-    title:'',
-    date:'',
-    city:'',
-    venue:'',
-    hostedBy:''
-  }
+  let event = {};
   if(eventId && state.event.length>0)
   {
    event = state.event.filter(event => event.id === eventId)[0];
   }
   return {
-    event
+    initialValues:event
   }
 }
 
@@ -65,9 +59,7 @@ class EventForm extends Component {
                 ...this.state.event,
                 id:cuid(),
                 hostPhotoURL:'/assets/user.png'
-
               }
-              
               this.props.createEvent(newEvent);
               this.props.history.push('/events')
 
@@ -93,7 +85,7 @@ class EventForm extends Component {
                placeholder="Give your event category name"
                 component={SelectInput}
                 options={category}
-                multiple={true}
+                // multiple={true}
                 type="text"/>
                 <Field
                name="description" 
@@ -103,17 +95,17 @@ class EventForm extends Component {
                 type="text"/>
                  <Header sub color="teal" content="Event Location Details"/>
                 <Field
-               name="'city" 
+               name="city" 
                placeholder="Event city"
                 component={TextInput}
                 type="text"/>
                 <Field
-               name="'venue" 
+               name="venue" 
                placeholder="Event Venue"
                 component={TextInput}
                 type="text"/>
                 <Field
-               name="'date" 
+               name="date" 
                placeholder="Date"
                 component={TextInput}
                 type="text"/>
