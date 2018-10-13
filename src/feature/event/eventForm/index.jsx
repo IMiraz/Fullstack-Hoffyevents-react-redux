@@ -1,18 +1,32 @@
 import React, { Component } from 'react'
 import { Segment, Form, Button  } from 'semantic-ui-react'
+import {connect} from 'react-redux'
 
-const emptyEvents = {
-       title:'',
-        date:'',
-        city:'',
-        venue:'',
-        hostedBy:''
+
+
+const mapStateToProps = (state, ownProps) => {
+const eventId= ownProps.match.params.id;
+
+  let event = {
+    title:'',
+    date:'',
+    city:'',
+    venue:'',
+    hostedBy:''
+  }
+  if(eventId && state.event.length>0)
+  {
+   event = state.event.filter(event => event.id === eventId)[0];
+  }
+  return {
+    event
+  }
 }
 
 class EventForm extends Component {
 
     state = {
-        event:emptyEvents
+        event: Object.assign({}, this.props.event)
     }
     onFormSubmit = (evt) =>
     {
@@ -25,28 +39,7 @@ class EventForm extends Component {
   this.props.handlerCreateNewEvent(this.state.event)
 
     }
-    componentDidMount() {
-        console.log(this.props.selectEvent)
-          if(this.props.selectEvent !== null)
-          {
-              this.setState({
-                  event:this.props.selectEvent
-              })
-
-          }
-    }
-
-    componentWillReceiveProps(nextProps) {
-        // console.log('current:', this.props.selectEvent)
-        // console.log('next:', nextProps.selectEvent)
-
-        if(nextProps.selectEvent !== this.props.selectEvent) {
-            this.setState({
-                event:nextProps.selectEvent|| emptyEvents
-            })
-        }
-
-    }
+   
 
 handerInputOnChange = (event) =>
 {
@@ -114,4 +107,4 @@ const {event} = this.state
   }
 }
 
-export default EventForm
+export default connect(mapStateToProps)(EventForm)
