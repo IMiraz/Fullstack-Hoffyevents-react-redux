@@ -4,6 +4,12 @@ import Script from 'react-load-script'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 
+const styles = {
+    autocompleteContainer:{
+      zIndex:1000
+    }
+  }
+
  class PlaceInput extends Component {
 
     state = {
@@ -32,6 +38,7 @@ import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-au
          inputProps={{...input, placeholder}}
          options={options}
          onSelect={onSelect}
+         styles={styles}
          />
  }
    {touched &&
