@@ -7,7 +7,10 @@ import {List , Image, ListIcon, ListItem} from 'semantic-ui-react'
       const {attendee} = this.props;
     return (
       <ListItem>
-      <Image as="a" size="mini" circular src={attendee.photoURL}/>
+        {attendee && 
+         <Image as="a" size="mini" circular src={attendee.photoURL}/>
+        }
+     
        </ListItem>
     )
   }

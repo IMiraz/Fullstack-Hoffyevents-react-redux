@@ -14,18 +14,18 @@ const initialState = [
         venue: "Tower of London, St Katharine's & Wapping, London",
         hostedBy: 'Bob',
         hostPhotoURL: 'https://randomuser.me/api/portraits/men/20.jpg',
-        attendees: [
-          {
-            id: 'a',
-            name: 'Bob',
-            photoURL: 'https://randomuser.me/api/portraits/men/20.jpg'
-          },
-          {
-            id: 'b',
-            name: 'Tom',
-            photoURL: 'https://randomuser.me/api/portraits/men/22.jpg'
-          }
-        ]
+        // attendees: [
+        //   {
+        //     id: 'a',
+        //     name: 'Bob',
+        //     photoURL: 'https://randomuser.me/api/portraits/men/20.jpg'
+        //   },
+        //   {
+        //     id: 'b',
+        //     name: 'Tom',
+        //     photoURL: 'https://randomuser.me/api/portraits/men/22.jpg'
+        //   }
+        // ]
       },
     
       {
