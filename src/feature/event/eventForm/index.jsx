@@ -10,6 +10,7 @@ import TextInput from '../../../common/reduxForm/textInput'
 import TextArea from '../../../common/reduxForm/textArea'
 import SelectInput from '../../../common/reduxForm/SelectInput';
 import DateInput from '../../../common/reduxForm/DateInput'
+import GooglePlaceInput from '../../../common/reduxForm/googlePlaceInput'
 
 
 
@@ -124,7 +125,8 @@ class EventForm extends Component {
                 <Field
                name="city" 
                placeholder="Event city"
-                component={TextInput}
+                component={GooglePlaceInput}
+                options={{type:['(cities)']}}
                 type="text"/>
                 <Field
                name="venue" 
