@@ -5,7 +5,7 @@ import EventDetailedHeader from './eventDetailedHeader'
 import EventDetailedInfo from './eventDetailedInfo'
 import EventDetailedChat from './eventDetailedChat'
 import EventDetailedSidebar  from './eventDetailedSidebar'
-import { stat } from 'fs';
+
 
 const mapStateToProps = (state, ownProps) => {
   const eventId = ownProps.match.params.id;
