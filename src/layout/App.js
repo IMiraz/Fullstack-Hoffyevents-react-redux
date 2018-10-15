@@ -10,6 +10,7 @@ import UserDetailed from '../feature/user/userDetailed';
 import EventForm from '../feature/event/eventForm';
 import SettingsDashboard from '../feature/user/Settings/settingsDashboard';
 import TestComponent from '../feature/testArea/TestComponent'
+import ModalManager from '../feature/Modal/modalManager'
 
 
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
 
     return (
       <div>
+        <ModalManager/>
       <Switch>
       <Route exact path='/' component={Home} />
       </Switch>
