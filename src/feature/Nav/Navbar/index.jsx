@@ -28,11 +28,14 @@ const  actions = {
    }
 
    handleSigin = () => {
-     console.log('click')
-
     this.props.openModal('LoginModal')
 
    }
+
+   handlerRegister = () => {
+       this.props.openModal('RegisterModal')
+   }
+
   render() {
      const {isAuthenticated} = this.state;
     return (
@@ -56,7 +59,7 @@ const  actions = {
                     positive inverted content="Create Event" />
                   </Menu.Item>
                 }
-                  {isAuthenticated ?<SignedInMenu handleSignout={this.handleSignout} /> : <SignOutMenu handleSigin={this.handleSigin}/> }
+                  {isAuthenticated ?<SignedInMenu handleSignout={this.handleSignout} /> : <SignOutMenu handleSigin={this.handleSigin}  handlerRegister={this. handlerRegister}/> }
 
 
 
