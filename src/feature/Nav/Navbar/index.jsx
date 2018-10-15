@@ -5,24 +5,23 @@ import {connect} from 'react-redux'
 import SignedInMenu from '../signenInMenu'
 import SignOutMenu from '../SignOutMenu'
 import {openModal}  from '../../Modal/modalActCreator/index'
+import {logout} from '../../auth/authActionsCreator'
 
 const  actions = {
-  openModal
+  openModal,
+  logout
 }
 
+const mapState = (state) => ({
+  auth:state.auth
+})
+
  class Navbar extends Component {
-   state = {
-     isAuthenticated:false
-
-   }
-
-  
+   
 
    handleSignout = () => {
-     this.setState({
-        isAuthenticated:false
-     })
-
+     this.props.logout()
+    
      this.props.history.push('/')
 
    }
@@ -30,14 +29,16 @@ const  actions = {
    handleSigin = () => {
     this.props.openModal('LoginModal')
 
+
    }
 
    handlerRegister = () => {
        this.props.openModal('RegisterModal')
    }
 
-  render() {
-     const {isAuthenticated} = this.state;
+  render() { 
+     const {auth} = this.props;
+     const authenticated=auth.authenticated
     return (
               <Menu inverted fixed="top">
                 <Container>
@@ -47,10 +48,10 @@ const  actions = {
                   </Menu.Item>
                   <Menu.Item name="Events" as={NavLink} to="/events" />
                   <Menu.Item name="Test" as={NavLink} to="/test" />
-                  {isAuthenticated &&
+                  {authenticated &&
                   <Menu.Item name="People" as={NavLink} to="/people" />
                   }
-                  {isAuthenticated &&
+                  {authenticated &&
                   <Menu.Item>
                     <Button
                     floated="right"
@@ -59,7 +60,7 @@ const  actions = {
                     positive inverted content="Create Event" />
                   </Menu.Item>
                 }
-                  {isAuthenticated ?<SignedInMenu handleSignout={this.handleSignout} /> : <SignOutMenu handleSigin={this.handleSigin}  handlerRegister={this. handlerRegister}/> }
+                  {authenticated ?<SignedInMenu currentUser={auth.currentUser} handleSignout={this.handleSignout} /> : <SignOutMenu handleSigin={this.handleSigin}  handlerRegister={this. handlerRegister}/> }
 
 
 
@@ -71,4 +72,4 @@ const  actions = {
 
 }
 
-export default withRouter(connect(null, actions)(Navbar))
+export default withRouter(connect(mapState, actions)(Navbar))
