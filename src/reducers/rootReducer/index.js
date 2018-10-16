@@ -4,6 +4,7 @@ import {reducer as reduxForm} from 'redux-form'
 import eventReducer from '../../../src/feature/event/eventReducer'
 import ModalReducer from '../../../src/feature/Modal/modalReducer'
 import AuthReducer  from '../../../src/feature/auth/authReducer'
+import AsyncReducer from '../../../src/feature/Async/AsyncReducer'
 
 
 const rootReducer = combineReducers({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
      event:eventReducer,
      form:reduxForm,
      modals:ModalReducer,
-     auth:AuthReducer
+     auth:AuthReducer,
+     Async:AsyncReducer
 })
 
 export default rootReducer
