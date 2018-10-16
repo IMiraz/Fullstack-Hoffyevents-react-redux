@@ -5,6 +5,7 @@ import EventForm from '../eventForm'
 import {connect}  from 'react-redux'
 import cuid from 'cuid'
 import { deleteEvent} from '../../event/eventActions/actionsCreator'
+import LoaderComponent from '../../Loader'
 
 const mapState = state => ({
   events: state.event,
@@ -33,15 +34,15 @@ handleDeleteEvent = (eventId) => () => {
 
   render()
   {
-    console.log(this.props.events)
+    const {loading, events} = this.props
  
-    if(this.props.loading) return <p>Loading....</p>
+    if(loading) return <LoaderComponent inverted={true}/>
   
     return (
         <Grid>
            <GridColumn width={10}> 
            <EventList
-           events={this.props.events}
+           events={events}
            handlerEditEventOpen={this.handlerEditEventOpen}
           deleteEvent={this.handleDeleteEvent}
             />

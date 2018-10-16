@@ -1,12 +1,12 @@
 import React from 'react'
 import {Dimmer, Loader} from 'semantic-ui-react'
 
-const Loader = ({intverted}) =>  {
+const LoaderComponent = ({inverted}) =>  {
   return (
-    <Dimmer intverted={intverted} active={true}>
+    <Dimmer inverted={inverted} active={true}>
       <Loader content='Loading ....'/>
     </Dimmer>
   )
 }
 
-export default Loader
+export default LoaderComponent
