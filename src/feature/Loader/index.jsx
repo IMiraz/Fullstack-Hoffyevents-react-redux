@@ -3,7 +3,7 @@ import {Dimmer, Loader} from 'semantic-ui-react'
 
 const Loader = ({intverted}) =>  {
   return (
-    <Dimmer >
+    <Dimmer intverted={intverted} active={true}>
       <Loader content='Loading ....'/>
     </Dimmer>
   )
