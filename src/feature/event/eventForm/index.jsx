@@ -61,10 +61,6 @@ const validate = combineValidators({
     city:isRequired('city'),
     venue:isRequired('venue')
 
-
-
-
-
 })
 
 class EventForm extends Component {
@@ -200,7 +196,6 @@ class EventForm extends Component {
                 dateFormat="DD/MM/YYYY h:mm"
                 timeFormat ="h:mm"
                 showTimeSelect
-
                 type="text"/>
                 <Button disabled={invalid || submitting || pristine} positive type="submit">
                   Submit
