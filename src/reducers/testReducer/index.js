@@ -25,7 +25,7 @@ export  const decrementCounter = (state, payload) =>
 }
 
 export const counterActionStart = (state) => {
-     return {...state, loading:false}
+     return {...state, loading:true}
 }
 
 export const counterActionFinished =(state) => {

@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {Button, Icon} from 'semantic-ui-react'
+import {Button, Icon, Lo} from 'semantic-ui-react'
 import Script from 'react-load-script'
 import GoogleMapReact from 'google-map-react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
-import {incrementCounter, decrementCounter} from '../TestComponent/testactionCreattors'
+import {incrementAsync, decrementAsync} from '../TestComponent/testactionCreattors'
 import {openModal} from '../../Modal/modalActCreator'
 
 const mapState = (state) => ({
-     data: state.test.data
+     data: state.test.data,
+     loading:state.test.loading
 })
 
 
@@ -16,8 +17,8 @@ const mapState = (state) => ({
 const Marker = () => <Icon name="marker" size="big" color="red"/>
 
 const actions = {
- incrementCounter,
- decrementCounter,
+ incrementAsync,
+ decrementAsync,
  openModal
 }
 
@@ -67,17 +68,17 @@ const actions = {
             onChange: this.onChange,
           }
 
-         const {incrementCounter, decrementCounter, data , openModal} = this.props;
+         const {incrementAsync, decrementAsync, data , openModal,loading} = this.props;
         return (
             <div>
                 {/* <Script
                 url='https://maps.googleapis.com/maps/api/js?key=AIzaSyCdsPTTDBATnXCOL1v63H-MYISatOSz4ys&libraries=places'
                 onLoad={this.handleLoadScript}
-                /> */}
+                /> */} 
             <h1>Test Component </h1>  
             <h2>The answer is :{this.props.data}</h2> 
-            <Button onClick={incrementCounter} content='Increment' color='green' ></Button>  
-            <Button onClick={decrementCounter} content='Decrement' color='red' ></Button>
+            <Button loading={loading} onClick={incrementAsync} content='Increment' color='green' ></Button>  
+            <Button loading={loading} onClick={decrementAsync} content='Decrement' color='red' ></Button>
             <Button onClick ={() => openModal('TestModal', {data:43})}content="show Modal" color='teal' ></Button> 
             <br/><br/>
             <form onSubmit={this.handleFormSubmit}>
