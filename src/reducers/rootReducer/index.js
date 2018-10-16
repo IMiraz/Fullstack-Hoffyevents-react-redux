@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
      form:reduxForm,
      modals:ModalReducer,
      auth:AuthReducer,
-     Async:AsyncReducer
+     async:AsyncReducer
 })
 
 export default rootReducer

@@ -56,3 +56,5 @@ const SampleData = {
       }
     ]
 }
+
+export default SampleData

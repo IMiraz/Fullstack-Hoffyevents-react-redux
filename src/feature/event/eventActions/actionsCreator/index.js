@@ -1,16 +1,14 @@
 
 import {CREATE_EVENT, DELETE_EVENT, UPDATE_EVENT, FETCH_EVENT} from '../actionsType'
 import  {AsyncActionStart, AsyncActionFinished, AsyncActionError} from '../../../Async/AsyncActionCreator'
-import {fetchSampleData} from '../../../Data/SimpleData/MockApi'
+import {fetchSampleData} from '../../../Data/MockApi'
 
 
 
 export const fetchEvents = (events) => {
     return {
          type:FETCH_EVENT,
-         payload:{
-              events
-         }
+         payload:events
     }
 
 }

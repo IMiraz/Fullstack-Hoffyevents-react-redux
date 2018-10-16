@@ -1,4 +1,4 @@
-import {ASYNC_ACTION_START, ASYNC_ACTION_FINISHED, ASYNC_ACTION_ERORR} from '../AsyncActionFields'
+import {ASYNC_ACTION_START, ASYNC_ACTION_FINISH, ASYNC_ACTION_ERORR} from '../AsyncActionFields'
 
 export const AsyncActionStart = () => {
     return {
@@ -8,7 +8,7 @@ export const AsyncActionStart = () => {
 
 export const AsyncActionFinished = () => {
     return {
-        type:ASYNC_ACTION_FINISHED
+        type:ASYNC_ACTION_FINISH
     }
 }
 

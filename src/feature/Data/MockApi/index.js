@@ -1,5 +1,4 @@
-import SampleData from '../../SimpleData'
-import { resolve } from 'path';
+import SampleData from '../SimpleData'
 
 const delay = (ms) => {
     return new Promise (resolve=> setTimeout(resolve, ms))

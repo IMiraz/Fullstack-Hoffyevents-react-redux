@@ -6,17 +6,14 @@ import {connect}  from 'react-redux'
 import cuid from 'cuid'
 import { deleteEvent} from '../../event/eventActions/actionsCreator'
 
-const maspState = (state) => 
-({
-  eventDatas:state.event
-})
+const mapState = state => ({
+  events: state.event,
+  loading: state.async.loading
+});
 
 
 const actions ={
-
   deleteEvent
-
-  
 }
 
 
@@ -36,17 +33,19 @@ handleDeleteEvent = (eventId) => () => {
 
   render()
   {
-   // console.log(this.props.createEvent);
-    //const  {eventDatas} = this.props
-
+    console.log(this.props.events)
+ 
+    if(this.props.loading) return <p>Loading....</p>
+  
     return (
         <Grid>
-           <GridColumn width={10}>
+           <GridColumn width={10}> 
            <EventList
-           events={this.props.eventDatas}
+           events={this.props.events}
            handlerEditEventOpen={this.handlerEditEventOpen}
           deleteEvent={this.handleDeleteEvent}
             />
+          
            </GridColumn>
            <GridColumn width={6}>
           
@@ -56,4 +55,4 @@ handleDeleteEvent = (eventId) => () => {
   }
 }
 
-export default connect(maspState, actions) (EventDashboard)
+export default connect(mapState, actions)(EventDashboard);
