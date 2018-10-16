@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux'
 import testReducer  from '../testReducer'
 import {reducer as reduxForm} from 'redux-form'
-import {reducer as toastrReducer } from 'react-redux'
+import {reducer as toastrReducer} from 'react-redux-toastr'
 import eventReducer from '../../../src/feature/event/eventReducer'
 import ModalReducer from '../../../src/feature/Modal/modalReducer'
 import AuthReducer  from '../../../src/feature/auth/authReducer'

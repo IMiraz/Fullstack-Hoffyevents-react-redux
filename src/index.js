@@ -3,6 +3,8 @@ import {Provider} from 'react-redux'
 import {BrowserRouter} from 'react-router-dom'
 import ReactDOM from 'react-dom';
 import 'semantic-ui-css/semantic.min.css'
+import ReduxToastr from 'react-redux-toastr'
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
 import './index.css';
 import App from './layout/App';
 import * as serviceWorker from './serviceWorker';
@@ -19,6 +21,16 @@ let  render = () => {
         <Provider store={store}>
         <BrowserRouter>
         <ScrollToTop>
+          <ReduxToastr
+          timeOut={4000}
+          newestOnTop={false}
+          preventDuplicates
+          position="bottom-right"
+          transitionIn="fadeIn"
+          transitionOut="fadeOut"
+          progressBar
+          closeOnToastrClick
+          />
         <App />
         </ScrollToTop>
       
