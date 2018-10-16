@@ -5,7 +5,6 @@ import {
      COUNTER_ACTION_START,
      COUNTER_ACTION_FINISHED
     } from '../testActionFileds'
-import { resolve } from 'dns';
 
 
 export const incrementCounter = () => {

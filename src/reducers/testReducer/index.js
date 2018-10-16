@@ -1,8 +1,14 @@
 import {createReducer} from '../../../src/common/util/reducerUtil'
 
-import {INCREMENT_COUNTER, DECREMENT_COUNTER} from '../../../src/feature/testArea/TestComponent/testActionFileds'
+import {
+    INCREMENT_COUNTER, 
+    DECREMENT_COUNTER,
+    COUNTER_ACTION_START,
+    COUNTER_ACTION_FINISHED
+} from '../../../src/feature/testArea/TestComponent/testActionFileds'
 const initialState = {
-     data:526
+     data:526,
+     loading:false
 }
 
 
@@ -16,6 +22,14 @@ export  const incrementCounter = (state, payload) =>
 export  const decrementCounter = (state, payload) =>
 {
    return {...state, data:state.data -1};
+}
+
+export const counterActionStart = (state) => {
+     return {...state, loading:false}
+}
+
+export const counterActionFinished =(state) => {
+     return {...state, loading:false}
 }
 
 
@@ -38,5 +52,7 @@ export  const decrementCounter = (state, payload) =>
 
 export default createReducer(initialState, {
     [INCREMENT_COUNTER]:incrementCounter,
-    [DECREMENT_COUNTER]:decrementCounter
+    [DECREMENT_COUNTER]:decrementCounter,
+    [COUNTER_ACTION_START]:counterActionStart,
+    [COUNTER_ACTION_FINISHED]:counterActionFinished
 })
