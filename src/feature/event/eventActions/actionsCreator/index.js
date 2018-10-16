@@ -33,11 +33,9 @@ export const loadEvents = () => {
 
     }
 
-
-
 }
 
- 
+
 export const createEvent = (event) => {
      return {
          type:CREATE_EVENT,
