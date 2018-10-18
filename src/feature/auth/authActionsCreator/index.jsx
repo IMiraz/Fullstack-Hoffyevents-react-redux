@@ -51,7 +51,10 @@ export const  login = (credentials) => {
              
           }
           catch(error) {
-            console.log(error);
+            throw new SubmissionError({
+              _error:error.message
+            })
+            
           }
 
 
