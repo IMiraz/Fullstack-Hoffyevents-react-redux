@@ -6,11 +6,10 @@ import {connect} from 'react-redux'
 import SignedInMenu from '../signenInMenu'
 import SignOutMenu from '../SignOutMenu'
 import {openModal}  from '../../Modal/modalActCreator/index'
-import {logout} from '../../auth/authActionsCreator'
 
 const  actions = {
   openModal,
-  logout
+  
 }
 
 const mapState = (state) => ({
