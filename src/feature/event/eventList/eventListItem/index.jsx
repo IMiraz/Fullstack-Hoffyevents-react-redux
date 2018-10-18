@@ -24,7 +24,7 @@ import EventListAttende from '../eventListAttende/index'
                 </Segment>
                 <Segment>
                   <span>
-                    <Icon name="clock" /> {format(event.date, 'dddd Do MMMM')} at{''}{format(event.date, 'h:mm A')}|
+                    <Icon name="clock" /> {format(event.date.toDate(), 'dddd Do MMMM')} at{''}{format(event.date, 'h:mm A')}|
                     <Icon name="marker" /> {event.venue}
 
                   </span>
