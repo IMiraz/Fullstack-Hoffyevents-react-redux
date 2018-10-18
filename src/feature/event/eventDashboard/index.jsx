@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Grid, GridColumn, Button } from 'semantic-ui-react';
+import {firestoreConnect} from 'react-redux-firebase'
 import EventList from '../eventList'
 import EventForm from '../eventForm'
 import {connect}  from 'react-redux'
@@ -8,7 +9,7 @@ import { deleteEvent} from '../../event/eventActions/actionsCreator'
 import LoaderComponent from '../../Loader'
 
 const mapState = state => ({
-  events: state.event,
+  events: state.firestore.ordered.events,
   loading: state.async.loading
 });
 
@@ -56,4 +57,4 @@ handleDeleteEvent = (eventId) => () => {
   }
 }
 
-export default connect(mapState, actions)(EventDashboard);
+export default connect(mapState, actions)(firestoreConnect([{collection:'events'}])(EventDashboard));

@@ -31,8 +31,9 @@ import EventListAttende from '../eventListAttende/index'
                 </Segment>
                 <Segment secondary>
                   <List horizontal>
-                   {event.attendees &&  event.attendees.map(attendee => (
-            <EventListAttende key={attendee.id} attendee={attendee}/>
+                   {event.attendees &&  
+                   Object.values(event.attendees).map((attendee,index) => (
+            <EventListAttende key={index} attendee={attendee}/>
                    ))}
 
                   </List>
