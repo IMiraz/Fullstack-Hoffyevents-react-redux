@@ -10,10 +10,9 @@ import App from './layout/App';
 import * as serviceWorker from './serviceWorker';
 import {ConfigureStore}  from '../src/store/ConfigureStore'
 import ScrollToTop from '../src/common/util/ScrollToTop'
-import {loadEvents} from '../src/feature/event/eventActions/actionsCreator'
 
 const store= ConfigureStore();
-store.dispatch(loadEvents());
+
 const rootElement = document.getElementById('root')
 
 let  render = () => {
