@@ -3,7 +3,6 @@ import { Segment, Header, Form, Divider, Label, Button, Icon } from 'semantic-ui
 import { Field, reduxForm } from 'redux-form';
 import {combineValidators, composeValidators, matchesField, isRequired} from 'revalidate' 
 import TextInput from '../../../../common/reduxForm/textInput';
-import { updatePassword } from '../../../auth/authActionsCreator';
 
 const validate = combineValidators({
   newPassword1:isRequired({message:'Please Enter a Password'}),
@@ -14,10 +13,11 @@ const validate = combineValidators({
 
 })
 
-const AccountPage = ({ error, invalid, submitting, handleSubmit, updatePassword}) => {
+const AccountPage = ({ error, invalid, submitting, handleSubmit, updatePassword, providerId}) => {
   return (
     <Segment>
       <Header dividing size="large" content="Account" />
+      {providerId &&  providerId=='password' && 
       <div>
         <Header color="teal" sub content="Change password" />
         <p>Use this form to update your account settings</p>
@@ -51,16 +51,21 @@ const AccountPage = ({ error, invalid, submitting, handleSubmit, updatePassword}
           <Button disabled={invalid || submitting} size="large" positive content="Update Password" />
         </Form>
       </div>
+      }
 
+ {providerId && providerId=='facebook.com' && 
       <div>
+       
         <Header color="teal" sub content="Facebook Account" />
         <p>Please visit Facebook to update your account settings</p>
         <Button type="button" color="facebook">
           <Icon name="facebook" />
           Go to Facebook
         </Button>
+        
       </div>
-
+ }
+  {providerId && providerId=='google.com' && 
       <div>
         <Header color="teal" sub content="Google Account" />
         <p>Please visit Google to update your account settings</p>
@@ -69,6 +74,7 @@ const AccountPage = ({ error, invalid, submitting, handleSubmit, updatePassword}
           Go to Google
         </Button>
       </div>
+  }
     </Segment>
   );
 };
