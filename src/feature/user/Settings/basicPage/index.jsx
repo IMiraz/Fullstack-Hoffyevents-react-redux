@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import {Segment, Form, Header, Divider, Button} from 'semantic-ui-react';
 import {Field, reduxForm} from 'redux-form';
+import moment from 'moment'
 import DateInput from "../../../../common/reduxForm/DateInput";
 import PlaceInput from "../../../../common/reduxForm/googlePlaceInput";
 import TextInput from "../../../../common/reduxForm/textInput";
@@ -43,6 +44,11 @@ class BasicsPage extends Component {
                         name='dateOfBirth'
                         component={DateInput}
                         placeholder='Date of Birth'
+                        dateFormat='YYYY-MM-DD'
+                        showYearDropdown={true}
+                        showMonthDropdown={true}
+                        dropdownMode='select'
+                        maxDate={moment().subtract(18,'year')}
                     />
                     <Field
                         name='city'
