@@ -63,8 +63,9 @@ export const  login = (credentials) => {
      }
 
      export const socialLogin = (selectedProvider) => {
-      return  async (dispatch, getState,{getFirebase}) => {
+      return  async (dispatch, getState,{getFirebase, getFirestore}) => {
          const firebase = getFirebase();
+         const firestore = getFirestore();
 
          try {
             dispatch(closeModal());
@@ -72,7 +73,16 @@ export const  login = (credentials) => {
                provider:selectedProvider,
                type:'popup'
             })
-            console.log(user)
+             if(user.additionalUserInfo.isNewUser)
+             {
+               await firestore.set(`users/${user.user.uid}`, {
+               displayName:user.profile.displayName,
+               photoURL:user.profile.avatarUrl,
+               createdAt:firestore.FieldValue.serverTimestamp()
+
+               })
+
+             }
          }
              catch(error) {
                console.log(error)
