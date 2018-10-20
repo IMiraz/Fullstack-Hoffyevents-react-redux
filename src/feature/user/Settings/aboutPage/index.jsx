@@ -72,4 +72,4 @@ const AboutPage = ({ pristine, submitting, updateProfile, handleSubmit }) => {
   );
 };
 
-export default reduxForm({ form: 'userProfile', enableReinitialize: true })(AboutPage);
+export default reduxForm({ form: 'userProfile', enableReinitialize: true, destroyOnUnmount:false })(AboutPage);
