@@ -30,7 +30,7 @@ const SettingsDasboard = ({ updatePassword,providerId, user, updateProfile}) => 
     <Redirect exact from='/settings' to='/settings/basics'/>
 
       <Route path='/settings/basics' render= {() => <BasicPage updateProfile={updateProfile} initialValues={user}/>}/>
-      <Route path='/settings/about' component={AboutPage}/>
+      <Route path='/settings/about' render= {() => <AboutPage updateProfile={updateProfile} initialValues={user}/>} />
       <Route path='/settings/photos' component={PhotoPage}/>
       <Route path='/settings/account' render ={() => <AccountPage updatePassword={updatePassword} providerId={providerId}/> }/>
     </Switch>
