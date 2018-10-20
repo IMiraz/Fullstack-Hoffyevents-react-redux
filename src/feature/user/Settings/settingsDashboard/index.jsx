@@ -1,4 +1,5 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import {GridColumn, Grid} from 'semantic-ui-react'
 import {Switch, Route, Redirect} from 'react-router-dom'
 import SettingsNav from '../settingsNav'
@@ -6,10 +7,13 @@ import AccountPage from '../accountPage'
 import PhotoPage from '../photoPage'
 import AboutPage from '../aboutPage'
 import BasicPage from '../basicPage'
+import {updatePassword} from '../../../auth/authActionsCreator'
 
-//React done now emplement redux ;)
+const actions = {
+   updatePassword,
+}
 
-const SettingsDasboard = () => {
+const SettingsDasboard = ({ updatePassword}) => {
   return (
     <div>
     <Grid>
@@ -20,7 +24,7 @@ const SettingsDasboard = () => {
       <Route path='/settings/basics' component={BasicPage}/>
       <Route path='/settings/about' component={AboutPage}/>
       <Route path='/settings/photos' component={PhotoPage}/>
-      <Route path='/settings/account' component={AccountPage}/>
+      <Route path='/settings/account' render ={() => <AccountPage updatePassword={updatePassword}/> }/>
     </Switch>
     </GridColumn>
     <GridColumn width={4}>
@@ -33,4 +37,4 @@ const SettingsDasboard = () => {
   )
 }
 
-export default SettingsDasboard
+export default connect(null, actions)(SettingsDasboard)

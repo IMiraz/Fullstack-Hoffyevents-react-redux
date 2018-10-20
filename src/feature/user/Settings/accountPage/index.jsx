@@ -3,6 +3,7 @@ import { Segment, Header, Form, Divider, Label, Button, Icon } from 'semantic-ui
 import { Field, reduxForm } from 'redux-form';
 import {combineValidators, composeValidators, matchesField, isRequired} from 'revalidate' 
 import TextInput from '../../../../common/reduxForm/textInput';
+import { updatePassword } from '../../../auth/authActionsCreator';
 
 const validate = combineValidators({
   newPassword1:isRequired({message:'Please Enter a Password'}),
@@ -13,14 +14,14 @@ const validate = combineValidators({
 
 })
 
-const AccountPage = ({ error, invalid, submitting }) => {
+const AccountPage = ({ error, invalid, submitting, handleSubmit, updatePassword}) => {
   return (
     <Segment>
       <Header dividing size="large" content="Account" />
       <div>
         <Header color="teal" sub content="Change password" />
         <p>Use this form to update your account settings</p>
-        <Form>
+        <Form onSubmit = {handleSubmit(updatePassword)}>
           <Field
             width={8}
             name="newPassword1"
@@ -72,4 +73,4 @@ const AccountPage = ({ error, invalid, submitting }) => {
   );
 };
 
-export default reduxForm({ form: 'AccountPage', validate })(AccountPage);
+export default reduxForm({ form: 'accountPage', validate })(AccountPage);
