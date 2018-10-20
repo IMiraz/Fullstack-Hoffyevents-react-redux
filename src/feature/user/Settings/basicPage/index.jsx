@@ -11,11 +11,11 @@ import RadioInput from "../../../../common/reduxForm/RadioInput"
 class BasicsPage extends Component {
 
     render() {
-        const {pristine, submitting} = this.props;
+        const {pristine, submitting, updateProfile, handleSubmit} = this.props;
         return (
             <Segment>
                 <Header dividing size='large' content='Basics' />
-                <Form>
+                <Form onSubmit={handleSubmit(updateProfile)}>
                     <Field
                         width={8}
                         name='displayName'
@@ -24,6 +24,7 @@ class BasicsPage extends Component {
                         placeholder='Known As'
                     />
                     <Form.Group inline>
+                    <label>Gender:</label>
                     <Field
                     name='gender'
                     type='radio'
