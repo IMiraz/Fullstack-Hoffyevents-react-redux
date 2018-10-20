@@ -5,6 +5,7 @@ import {Field, reduxForm} from 'redux-form';
 import DateInput from "../../../../common/reduxForm/DateInput";
 import PlaceInput from "../../../../common/reduxForm/googlePlaceInput";
 import TextInput from "../../../../common/reduxForm/textInput";
+import RadioInput from "../../../../common/reduxForm/RadioInput"
 
 class BasicsPage extends Component {
 
@@ -22,7 +23,20 @@ class BasicsPage extends Component {
                         placeholder='Known As'
                     />
                     <Form.Group inline>
-                      {/* todo: Gender Radio button */}
+                    <Field
+                    name='gender'
+                    type='radio'
+                    value='male'
+                    label='Male'
+                    component={RadioInput}
+                    />
+                    <Field
+                    name='gender'
+                    type='radio'
+                    value='female'
+                    label='Female'
+                    component={RadioInput}
+                    />
                     </Form.Group>
                     <Field
                         width={8}
