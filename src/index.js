@@ -44,7 +44,11 @@ setTimeout(render)
  })
 }
 
-render()
+store.firebaseAuthIsReady.then(() => {
+
+  render()
+})
+
 
 
 serviceWorker.unregister();

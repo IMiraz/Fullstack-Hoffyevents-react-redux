@@ -13,7 +13,7 @@ const actions = {
    updatePassword,
 }
 const mapState =(state) => ({
-  providerId:state.firebase.auth.isLoaded && state.firebase.auth.providerData[0].providerId
+  providerId: state.firebase.auth.providerData[0].providerId
 })
 
 
