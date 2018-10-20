@@ -8,16 +8,18 @@ import PhotoPage from '../photoPage'
 import AboutPage from '../aboutPage'
 import BasicPage from '../basicPage'
 import {updatePassword} from '../../../auth/authActionsCreator'
+import basicPage from '../basicPage';
 
 const actions = {
    updatePassword,
 }
 const mapState =(state) => ({
-  providerId: state.firebase.auth.providerData[0].providerId
+  providerId: state.firebase.auth.providerData[0].providerId,
+  user:state.firebase.profile
 })
 
 
-const SettingsDasboard = ({ updatePassword,providerId}) => {
+const SettingsDasboard = ({ updatePassword,providerId, user}) => {
   console.log(providerId)
   return (
     <div>
@@ -26,7 +28,7 @@ const SettingsDasboard = ({ updatePassword,providerId}) => {
     <Switch>
     <Redirect exact from='/settings' to='/settings/basics'/>
 
-      <Route path='/settings/basics' component={BasicPage}/>
+      <Route path='/settings/basics' render= {() => <BasicPage initialValues={user}/>}/>
       <Route path='/settings/about' component={AboutPage}/>
       <Route path='/settings/photos' component={PhotoPage}/>
       <Route path='/settings/account' render ={() => <AccountPage updatePassword={updatePassword} providerId={providerId}/> }/>
