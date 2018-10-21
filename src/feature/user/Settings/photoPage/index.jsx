@@ -31,11 +31,14 @@ class PhotosPage extends Component {
                     </Grid.Column>
                     <Grid.Column width={1} />
                     <Grid.Column width={4}>
-                        <Header sub color='teal' content='Step 2 - Resize image' />
+                    
                     </Grid.Column>
                     <Grid.Column width={1} />
                     <Grid.Column width={4}>
                         <Header sub color='teal' content='Step 3 - Preview and Upload' />
+                        {this.state.files[0] && 
+                        <Image style={{ minHeight:'200px', minwidth:'200px'}} src={this.state.files[0].preview}/>
+                    }
                     </Grid.Column>
 
                 </Grid>
