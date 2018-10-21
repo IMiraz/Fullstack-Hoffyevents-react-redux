@@ -2,7 +2,14 @@ import React, {Component} from 'react';
 import {Image, Segment, Header, Divider, Grid, Button, Card,Icon} from 'semantic-ui-react';
 import Dropzone from 'react-dropzone'
 import Cropper from 'react-cropper'
+import {connect} from 'react-redux'
 import 'cropperjs/dist/cropper.css'
+import { uploadProfileImage } from '../../userActionCreator';
+import {toastr} from 'react-redux-toastr'
+
+const actions = {
+  uploadProfileImage
+}
 
 class PhotosPage extends Component {
  state = {
@@ -33,6 +40,25 @@ class PhotosPage extends Component {
      })
 
    },'image/jpeg');
+ }
+
+ cancelCrop =() => {
+   this.setState({
+     files:[],
+     image:{}
+   })
+ }
+
+ uploadImage = async () => {
+    try {
+      await this.props.uploadProfileImage(this.state.image, this.state.fileName);
+      this.cancelCrop();
+      toastr.success('Success', 'Phot hasbeen uploaded')
+    } 
+    catch(error) {
+      toastr.error('OPPS', error.message);
+
+    }
  }
 
     render() {
@@ -73,7 +99,15 @@ class PhotosPage extends Component {
                     <Grid.Column width={4}>
                         <Header sub color='teal' content='Step 3 - Preview and Upload' />
                         {this.state.files[0] && 
-                        <Image style={{ minHeight:'200px', minwidth:'200px'}} src={this.state.cropResult}/>
+                        <div>
+                        <Image 
+                        style={{ minHeight:'200px', minwidth:'200px'}}
+                         src={this.state.cropResult}/>
+                        <Button.Group>
+                          <Button onClick={this.uploadImage} style={{width:'108px'}} positive icon='check'/>
+                          <Button onClick={this.cancelCrop} style={{width:'108px'}} icon='close'/>
+                      </Button.Group>
+                      </div>
                     }
                     </Grid.Column>
 
@@ -103,4 +137,4 @@ class PhotosPage extends Component {
     }
 }
 
-export default PhotosPage;
+export default connect(null, actions) (PhotosPage);
