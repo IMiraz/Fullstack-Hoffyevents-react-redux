@@ -3,13 +3,30 @@ import {Image, Segment, Header, Divider, Grid, Button, Card,Icon} from 'semantic
 import Dropzone from 'react-dropzone'
 import Cropper from 'react-cropper'
 import {connect} from 'react-redux'
+import {firestoreConnect} from 'react-redux-firebase'
+import {compose} from 'redux'
 import 'cropperjs/dist/cropper.css'
 import { uploadProfileImage } from '../../userActionCreator';
 import {toastr} from 'react-redux-toastr'
 
+const query=({auth}) => {
+  return[
+    {
+      collection:'users',
+      doc:auth.uid,
+      subcollections:[{collection:'photos'}],
+      storeAs:'photos'
+    }
+  ]
+}
+
 const actions = {
   uploadProfileImage
 }
+const mapState = (state) => ({
+  auth: state.firebase.auth,
+  profile:state.firebase.profile
+})
 
 class PhotosPage extends Component {
  state = {
@@ -137,4 +154,7 @@ class PhotosPage extends Component {
     }
 }
 
-export default connect(null, actions) (PhotosPage);
+export default compose(
+  connect(mapState, actions),
+  firestoreConnect(auth =>query(auth))
+) (PhotosPage);
