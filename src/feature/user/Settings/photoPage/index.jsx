@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import 'cropperjs/dist/cropper.css'
-import { uploadProfileImage, setMainPhoto } from '../../userActionCreator';
+import { uploadProfileImage, setMainPhoto, deletePhoto } from '../../userActionCreator';
 import {toastr} from 'react-redux-toastr'
 
 const query=({auth}) => {
@@ -22,7 +22,8 @@ const query=({auth}) => {
 
 const actions = {
   uploadProfileImage,
-  setMainPhoto
+  setMainPhoto,
+  deletePhoto
 }
 const mapState = (state) => ({
   auth: state.firebase.auth,
@@ -84,6 +85,20 @@ class PhotosPage extends Component {
   try {
     this.props.setMainPhoto(photo)
     toastr.success('Success', 'Profile photo has been updated')
+
+  }
+  catch(error) {
+    toastr.error('OOps', error.message)
+
+  }
+
+ }
+
+ handledeletePhoto = photo=> async () => {
+
+  try {
+    this.props.deletePhoto(photo)
+    toastr.success('Success', 'photo has been deleted')
 
   }
   catch(error) {
@@ -170,7 +185,7 @@ class PhotosPage extends Component {
                         />
                         <div className='ui two buttons'>
                             <Button onClick={this.handlesetMainPhoto(photo)} basic color='green'>Main</Button>
-                            <Button basic icon='trash' color='red' />
+                            <Button onClick={this.handledeletePhoto(photo)} basic icon='trash' color='red' />
                         </div>
                     </Card>
                          
