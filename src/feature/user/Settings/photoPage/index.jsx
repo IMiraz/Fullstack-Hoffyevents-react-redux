@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import 'cropperjs/dist/cropper.css'
-import { uploadProfileImage } from '../../userActionCreator';
+import { uploadProfileImage, setMainPhoto } from '../../userActionCreator';
 import {toastr} from 'react-redux-toastr'
 
 const query=({auth}) => {
@@ -21,7 +21,8 @@ const query=({auth}) => {
 }
 
 const actions = {
-  uploadProfileImage
+  uploadProfileImage,
+  setMainPhoto
 }
 const mapState = (state) => ({
   auth: state.firebase.auth,
@@ -71,12 +72,25 @@ class PhotosPage extends Component {
     try {
       await this.props.uploadProfileImage(this.state.image, this.state.fileName);
       this.cancelCrop();
-      toastr.success('Success', 'Phot hasbeen uploaded')
+      toastr.success('Success', 'Photo has been uploaded')
     } 
     catch(error) {
       toastr.error('OPPS', error.message);
 
     }
+ }
+ handlesetMainPhoto = photo=> async () => {
+
+  try {
+    this.props.setMainPhoto(photo)
+    toastr.success('Success', 'Profile photo has been updated')
+
+  }
+  catch(error) {
+    toastr.error('OOps', error.message)
+
+  }
+
  }
 
     render() {
@@ -155,7 +169,7 @@ class PhotosPage extends Component {
                             src={photo.url}
                         />
                         <div className='ui two buttons'>
-                            <Button basic color='green'>Main</Button>
+                            <Button onClick={this.handlesetMainPhoto(photo)} basic color='green'>Main</Button>
                             <Button basic icon='trash' color='red' />
                         </div>
                     </Card>
