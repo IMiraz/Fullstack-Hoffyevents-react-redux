@@ -82,7 +82,13 @@ class PhotosPage extends Component {
     render() {
       const {photos, profile} = this.props;
       //console.log(photos);
-      console.log(photos)
+      let filterPhotos;
+       if(photos) {
+         filterPhotos = photos.filter(photo => {
+           return photo.url !== profile.photoURL
+         })
+       }
+       console.log(filterPhotos)
         return (
             <Segment>
                 <Header dividing size='large' content='Your Photos' />
@@ -143,7 +149,7 @@ class PhotosPage extends Component {
                         <Button positive>Main Photo</Button>
                     </Card>
 
-                      {photos && photos.map((photo)=> (
+                      {photos && filterPhotos.map((photo)=> (
                         <Card key={photo.id}>
                         <Image
                             src={photo.url}
