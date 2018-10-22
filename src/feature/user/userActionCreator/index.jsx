@@ -1,5 +1,6 @@
 import moment from 'moment';
-import {toastr} from 'react-redux-toastr'
+import {toastr} from 'react-redux-toastr';
+import cuid from 'cuid'
 
 
 export const updateProfile = (user) => {
@@ -24,12 +25,13 @@ export const updateProfile = (user) => {
 export const uploadProfileImage=(file, fileName) => 
 async(dispatch, getState, {getFirebase, getFirestore}) => {
      
+    const ImageName = cuid()
      const firebase= getFirebase();
      const firestore= getFirestore();
      const user = firebase.auth().currentUser;
      const path= `${user.uid}/user_images`;
      const options = {
-         name:fileName
+         name:ImageName
      };
      try {
          //update the file to firebase storage
@@ -54,7 +56,7 @@ async(dispatch, getState, {getFirebase, getFirestore}) => {
              doc:user.uid,
              subcollections:[{collection:'photos'}]
          }, {
-             name:fileName,
+             name:ImageName,
              url:downloadURL
 
          })
