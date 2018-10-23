@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Button, Card, Grid, Header, Icon, Image, Item, List, Menu, Segment} from "semantic-ui-react";
 import  UserdetailedHeader from './userDetailedHeader'
 import UserDetailedDescription from './userDetailedDescription'
+import UserDetailedSideBar from './userdetailedSidebar'
 
 class UserDetailedPage extends Component {
 
@@ -11,6 +12,8 @@ class UserDetailedPage extends Component {
             <Grid>
               <UserdetailedHeader/>
               <UserDetailedDescription/>
+              <UserDetailedSideBar/>
+              
             </Grid>
 
         );
