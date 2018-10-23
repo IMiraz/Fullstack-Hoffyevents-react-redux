@@ -4,6 +4,7 @@ import  UserdetailedHeader from './userDetailedHeader'
 import UserDetailedDescription from './userDetailedDescription'
 import UserDetailedSideBar from './userdetailedSidebar'
 import UserDetailedPhotos from './userDetailedPhotos'
+import UserDetailedEvent from './userDetailedEvent'
 
 class UserDetailedPage extends Component {
 
@@ -15,6 +16,7 @@ class UserDetailedPage extends Component {
               <UserDetailedDescription/>
               <UserDetailedSideBar/>
               <UserDetailedPhotos/>
+              <UserDetailedEvent/>
               
             </Grid>
 
