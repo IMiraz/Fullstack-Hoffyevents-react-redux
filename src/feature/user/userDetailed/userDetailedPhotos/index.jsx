@@ -1,17 +1,17 @@
 import React from 'react'
 import {Grid, Segment, Image, Header} from 'semantic-ui-react'
-const UserDetailedPhotos = () => {
+const UserDetailedPhotos = ({photos}) => {
   return (
     <Grid.Column width={12}>
     <Segment attached>
         <Header icon='image' content='Photos'/>
-        
+         {photos && 
         <Image.Group size='small'>
-            <Image src='https://randomuser.me/api/portraits/men/20.jpg'/>
-            <Image src='https://randomuser.me/api/portraits/men/20.jpg'/>
-            <Image src='https://randomuser.me/api/portraits/men/20.jpg'/>
-            <Image src='https://randomuser.me/api/portraits/men/20.jpg'/>
+         {photos && photos.map((photo, index )=> (
+             <Image key={index} src={photo.url}/>
+         ))}
         </Image.Group>
+         }
     </Segment>
 </Grid.Column>
     
