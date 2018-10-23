@@ -18,7 +18,7 @@ class UserDetailedPage extends Component {
         return (
             <Grid>
               <UserdetailedHeader profile={profile}/>
-              <UserDetailedDescription/>
+              <UserDetailedDescription profile={profile}/>
               <UserDetailedSideBar/>
               <UserDetailedPhotos/>
               <UserDetailedEvent/>
