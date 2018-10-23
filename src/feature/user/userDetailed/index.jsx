@@ -3,6 +3,7 @@ import {Button, Card, Grid, Header, Icon, Image, Item, List, Menu, Segment} from
 import  UserdetailedHeader from './userDetailedHeader'
 import UserDetailedDescription from './userDetailedDescription'
 import UserDetailedSideBar from './userdetailedSidebar'
+import UserDetailedPhotos from './userDetailedPhotos'
 
 class UserDetailedPage extends Component {
 
@@ -13,6 +14,7 @@ class UserDetailedPage extends Component {
               <UserdetailedHeader/>
               <UserDetailedDescription/>
               <UserDetailedSideBar/>
+              <UserDetailedPhotos/>
               
             </Grid>
 
