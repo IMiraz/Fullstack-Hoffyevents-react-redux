@@ -5,14 +5,19 @@ import UserDetailedDescription from './userDetailedDescription'
 import UserDetailedSideBar from './userdetailedSidebar'
 import UserDetailedPhotos from './userDetailedPhotos'
 import UserDetailedEvent from './userDetailedEvent'
+import {connect} from 'react-redux'
+
+const  mapState = state => ({
+    profile:state.firebase.profile
+})
 
 class UserDetailedPage extends Component {
 
     render() {
-
+       const  {profile} = this.props;
         return (
             <Grid>
-              <UserdetailedHeader/>
+              <UserdetailedHeader profile={profile}/>
               <UserDetailedDescription/>
               <UserDetailedSideBar/>
               <UserDetailedPhotos/>
@@ -24,4 +29,4 @@ class UserDetailedPage extends Component {
     }
 }
 
-export default UserDetailedPage;
+export default connect(mapState) (UserDetailedPage);
