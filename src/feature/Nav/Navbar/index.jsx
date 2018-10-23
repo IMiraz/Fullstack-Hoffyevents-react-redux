@@ -63,7 +63,7 @@ const mapState = (state) => ({
                   </Menu.Item>
                 }
                   {authenticated ?
-                  <SignedInMenu profile={profile} handleSignout={this.handleSignout} /> : <SignOutMenu handleSigin={this.handleSigin}  handlerRegister={this. handlerRegister}/> }
+                  <SignedInMenu auth={auth} profile={profile} handleSignout={this.handleSignout} /> : <SignOutMenu handleSigin={this.handleSigin}  handlerRegister={this. handlerRegister}/> }
 
 
 

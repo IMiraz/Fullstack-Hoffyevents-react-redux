@@ -1,12 +1,20 @@
-import React from 'react'
+import React, {Component} from 'react';
+import {Button, Card, Grid, Header, Icon, Image, Item, List, Menu, Segment} from "semantic-ui-react";
+import  UserdetailedHeader from './userDetailedHeader'
+import UserDetailedDescription from './userDetailedDescription'
 
-const UserDashboard = () => {
-  return (
-    <div>
-    <h1>UserDashboard</h1>
+class UserDetailedPage extends Component {
 
-    </div>
-  )
+    render() {
+
+        return (
+            <Grid>
+              <UserdetailedHeader/>
+              <UserDetailedDescription/>
+            </Grid>
+
+        );
+    }
 }
 
-export default UserDashboard
+export default UserDetailedPage;
