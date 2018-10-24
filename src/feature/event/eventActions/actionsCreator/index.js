@@ -4,6 +4,8 @@ import {CREATE_EVENT, DELETE_EVENT, UPDATE_EVENT, FETCH_EVENT} from '../actionsT
 import  {AsyncActionStart, AsyncActionFinished, AsyncActionError} from '../../../Async/AsyncActionCreator'
 import {fetchSampleData} from '../../../Data/MockApi'
 import {createNewEvent} from '../../../../common/util/helpers'
+import { getFirebase } from 'react-redux-firebase';
+import moment from 'moment'
 
 
 
@@ -63,17 +65,20 @@ export const createEvent = (event) => {
      }
 }
 
-export const updateEvent = (event) => {
-    return async  dispatch => {
-        try {
-            dispatch( {
-               type:UPDATE_EVENT,
-               payload:{
-                   event
-               }
-            })
 
-            toastr.success('Success!', 'Event has been Updated')
+export const updateEvent = (event) => {
+    return async  (dispatch, getState, {getFirestore}) => {
+
+        const firestore = getFirestore();
+        if(event.date !== getState().firestore.ordered.events[0].date)
+        {
+            event.date = moment(event.date).toDate();
+
+        }
+
+        try {
+           await firestore.update(`events/${event.id}`,event);
+        toastr.success('success','event has been updated')
            
         }
         catch(error) {

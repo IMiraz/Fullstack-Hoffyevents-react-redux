@@ -15,7 +15,7 @@ import TextArea from '../../../common/reduxForm/textArea'
 import SelectInput from '../../../common/reduxForm/SelectInput';
 import DateInput from '../../../common/reduxForm/DateInput'
 import GooglePlaceInput from '../../../common/reduxForm/googlePlaceInput'
-import { stat } from 'fs';
+
 
 
 
@@ -80,8 +80,12 @@ class EventForm extends Component {
    const {firestore, match} = this.props;
 
    let event =  await firestore.get(`events/${match.params.id}`);
-   console.log(event)
-
+ if(event.exists) {
+    this.setState({
+       venueLatLng:event.data().venueLatLng
+    })
+ }
+console.log(this.state.venueLatLng)
     }
 
     handleScriptLoaded = () => this.setState({ scriptLoaded: true });
@@ -115,17 +119,14 @@ class EventForm extends Component {
       })
   };
 
-
     onFormSubmit =values =>
     {
-      // console.log(values)
-    values.date= moment(values.date).format();  
+      // console.log(values) 
     values.venueLatLng = this.state.venueLatLng; 
-
             if(this.props.initialValues.id)
             {
-               this.props.updateEvent(values)
-               this.props.history.goBack();
+              this.props.updateEvent(values);
+              this.props.history.goBack();
             }
             else {
               this.props.createEvent(values);
