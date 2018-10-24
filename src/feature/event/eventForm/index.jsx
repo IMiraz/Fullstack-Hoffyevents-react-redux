@@ -8,8 +8,7 @@ import Script from 'react-load-script'
 import {withFirestore} from 'react-redux-firebase'
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import {composeValidators,combineValidators, isRequired, hasLengthGreaterThan} from 'revalidate'
-import {createEvent, updateEvent} from '../eventActions/actionsCreator'
-import cuid from 'cuid'
+import {createEvent, updateEvent,CancelToggle} from '../eventActions/actionsCreator'
 import TextInput from '../../../common/reduxForm/textInput'
 import TextArea from '../../../common/reduxForm/textArea'
 import SelectInput from '../../../common/reduxForm/SelectInput';
@@ -17,13 +16,10 @@ import DateInput from '../../../common/reduxForm/DateInput'
 import GooglePlaceInput from '../../../common/reduxForm/googlePlaceInput'
 
 
-
-
-
-
 const actions = {
    createEvent,
-   updateEvent
+   updateEvent,
+   CancelToggle
 }
 
 //the commint should manage event data show fromfirestore
@@ -36,7 +32,8 @@ const mapStateToProps = (state) => {
    event = state.firestore.ordered.events[0]
   }
   return {
-    initialValues:event
+    initialValues:event,
+    event
   }
 }
 
@@ -79,13 +76,13 @@ class EventForm extends Component {
     async componentDidMount() {
    const {firestore, match} = this.props;
 
-   let event =  await firestore.get(`events/${match.params.id}`);
- if(event.exists) {
-    this.setState({
-       venueLatLng:event.data().venueLatLng
-    })
- }
-console.log(this.state.venueLatLng)
+     await firestore.setListener(`events/${match.params.id}`);
+//  if(event.exists) {
+//     this.setState({
+//        venueLatLng:event.data().venueLatLng
+//     })
+//  }
+// console.log(this.state.venueLatLng)
     }
 
     handleScriptLoaded = () => this.setState({ scriptLoaded: true });
@@ -122,9 +119,12 @@ console.log(this.state.venueLatLng)
     onFormSubmit =values =>
     {
       // console.log(values) 
-    values.venueLatLng = this.state.venueLatLng; 
+       values.venueLatLng = this.state.venueLatLng; 
             if(this.props.initialValues.id)
             {
+              if(Object.keys(values.venueLatLng).length ===0) {
+                values.venueLatLng=this.props.event.venueLatLng
+              }
               this.props.updateEvent(values);
               this.props.history.goBack();
             }
@@ -140,7 +140,8 @@ console.log(this.state.venueLatLng)
 
   render() {
 
-    const {invalid, submitting, pristine} = this.props;
+    const {invalid, submitting, pristine, event, CancelToggle} = this.props;
+    console.log(event)
     return (
       <Grid>
          <Script
@@ -204,6 +205,15 @@ console.log(this.state.venueLatLng)
                   Submit
                 </Button>
                 <Button type="button" onClick={this.props.history.goBack}>Cancel</Button>
+                <Button
+                onClick={() =>CancelToggle(!event.cancelled, event.id)}
+                type="button"
+                color={event.cancelled? 'green' : 'red'}
+                content={event.cancelled? 'Reactive Event' : 'Cencel Event'}
+                floated="right"
+                >
+
+                </Button>
               </Form>
             </Segment>
 
