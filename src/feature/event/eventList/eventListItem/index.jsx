@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import format from 'date-fns/format'
-import { Segment, Item, Icon, List,Button, Image } from 'semantic-ui-react'
+import { Segment, Item, Icon, List,Button, Image, Label } from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import EventListAttende from '../eventListAttende/index'
 
@@ -18,6 +18,8 @@ import EventListAttende from '../eventListAttende/index'
                         <Item.Description>
                           Hosted by <a>{event.hostedBy}</a>
                         </Item.Description>
+                        {event.cancelled && 
+                        <Label style={{top:'-50px'}} ribbon='right' color="red" content="this event has been canceled "/> }
                       </Item.Content>
                     </Item>
                   </Item.Group>
