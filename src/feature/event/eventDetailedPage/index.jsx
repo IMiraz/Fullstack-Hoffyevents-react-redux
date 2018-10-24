@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {Grid, GridColumn} from 'semantic-ui-react'
+import {withFirestore} from 'react-redux-firebase'
 import {connect} from 'react-redux'
 import EventDetailedHeader from './eventDetailedHeader'
 import EventDetailedInfo from './eventDetailedInfo'
@@ -7,13 +8,12 @@ import EventDetailedChat from './eventDetailedChat'
 import EventDetailedSidebar  from './eventDetailedSidebar'
 
 
-const mapStateToProps = (state, ownProps) => {
-  const eventId = ownProps.match.params.id;
-
+const mapStateToProps = (state) => {
+ 
   let event = {}
-   if(eventId && state.event.length > 0)
+   if(state.firestore.ordered.events && state.firestore.ordered.events[0])
    {
-     event = state.event.filter(event => event.id === eventId)[0]
+     event = state.firestore.ordered.events[0]
    }
 
    return {
@@ -22,23 +22,35 @@ const mapStateToProps = (state, ownProps) => {
 
 }
 
-const EventDetailedPage = ({event}) => {
-  return (
-    <div>
-    <Grid>
+
+class EventDetailedPage extends Component {
+
+ async componentDidMount() {
+   const {firestore , match, history} = this.props;
+   let event = await firestore.get(`events/${match.params.id}`);
+  
+ }
+
+
+
+  render() {
+     const {event} = this.props
+    return (
+      <div>
+        <Grid>
       <GridColumn width={10}>
       <EventDetailedHeader event={event}/>
       <EventDetailedInfo event={event}/>
       <EventDetailedChat event={event}/>
       </GridColumn>
       <GridColumn width={6}>
-       <EventDetailedSidebar attendees={event.attendees}/>
- </GridColumn>
+       {/* <EventDetailedSidebar attendees={event.attendees}/> */}
+     </GridColumn>
 
     </Grid>
-
-    </div>
-  )
+      </div>
+    )
+  }
 }
 
-export default connect(mapStateToProps) (EventDetailedPage)
+export default withFirestore(connect(mapStateToProps) (EventDetailedPage))
