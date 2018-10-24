@@ -7,6 +7,7 @@ import EventDetailedHeader from './eventDetailedHeader'
 import EventDetailedInfo from './eventDetailedInfo'
 import EventDetailedChat from './eventDetailedChat'
 import EventDetailedSidebar  from './eventDetailedSidebar'
+import {objectToArray} from '../../../common/util/helpers'
 
 
 const mapStateToProps = (state) => {
@@ -42,6 +43,7 @@ class EventDetailedPage extends Component {
 
   render() {
      const {event} = this.props
+     const attendees =  event &&  event.attendees && objectToArray(event.attendees);
     return (
       <div>
         <Grid>
@@ -51,7 +53,7 @@ class EventDetailedPage extends Component {
       <EventDetailedChat event={event}/>
       </GridColumn>
       <GridColumn width={6}>
-       {/* <EventDetailedSidebar attendees={event.attendees}/> */}
+       <EventDetailedSidebar attendees={attendees}/>
      </GridColumn>
 
     </Grid>
