@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Grid, GridColumn} from 'semantic-ui-react'
 import {withFirestore} from 'react-redux-firebase'
+import {toastr} from 'react-redux-toastr'
 import {connect} from 'react-redux'
 import EventDetailedHeader from './eventDetailedHeader'
 import EventDetailedInfo from './eventDetailedInfo'
@@ -28,6 +29,12 @@ class EventDetailedPage extends Component {
  async componentDidMount() {
    const {firestore , match, history} = this.props;
    let event = await firestore.get(`events/${match.params.id}`);
+   if(!event.exists) {
+     history.push('/events');
+     toastr.error('error', 'No event found')
+     
+     
+   }
   
  }
 
