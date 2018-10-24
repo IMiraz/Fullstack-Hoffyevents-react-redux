@@ -26,7 +26,7 @@ const actions = {
    updateEvent
 }
 
-
+//the commint should manage event data show fromfirestore
 
 
 const mapStateToProps = (state) => {
