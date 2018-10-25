@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Card, Grid, Header, Icon, Image, Item, List, Menu, Segment} from "semantic-ui-react";
 import {connect} from 'react-redux'
+
 import {firestoreConnect, isEmpty} from 'react-redux-firebase'
 import {compose} from 'redux'
 import  UserdetailedHeader from './userDetailedHeader'
