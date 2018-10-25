@@ -19,7 +19,9 @@ const mapStateToProps = (state) => {
    }
 
    return {
-      event
+      event,
+      auth:state.firebase.auth
+      
    }
 
 }
@@ -34,7 +36,6 @@ class EventDetailedPage extends Component {
      history.push('/events');
      toastr.error('error', 'No event found')
      
-     
    }
   
  }
@@ -42,13 +43,15 @@ class EventDetailedPage extends Component {
 
 
   render() {
-     const {event} = this.props
+     const {event, auth} = this.props
      const attendees =  event &&  event.attendees && objectToArray(event.attendees);
+     const isHost = event.hostUid === auth.uid;
+     const isGoing = attendees && attendees.some(a => a.id === auth.uid);
     return (
       <div>
         <Grid>
       <GridColumn width={10}>
-      <EventDetailedHeader event={event}/>
+      <EventDetailedHeader event={event} isHost ={isHost} isGoing={isGoing}/>
       <EventDetailedInfo event={event}/>
       <EventDetailedChat event={event}/>
       </GridColumn>
