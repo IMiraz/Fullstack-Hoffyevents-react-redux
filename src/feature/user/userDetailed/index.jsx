@@ -38,12 +38,13 @@ const  mapState =(state, ownProps)=> {
 class UserDetailedPage extends Component {
 
     render() {
-       const  {profile, auth, photos} = this.props;
+       const  {profile, auth, photos, match} = this.props;
+       const isCurrentUser = auth.uid === match.params.id;
         return (
             <Grid>
               <UserdetailedHeader profile={profile}/>
               <UserDetailedDescription profile={profile}/>
-              <UserDetailedSideBar/>
+              <UserDetailedSideBar isCurrentUser={isCurrentUser}/>
               <UserDetailedPhotos photos={photos}/>
               <UserDetailedEvent/>
               
