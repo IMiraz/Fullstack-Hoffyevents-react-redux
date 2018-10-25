@@ -8,7 +8,7 @@ const SideBar=({isCurrentUser}) => {
                     <Segment>
                       {isCurrentUser? 
                         <Button as={Link} to="/settings" color='teal' fluid basic content='Edit Profile'/>:
-                        <Button as={Link} to="" color='teal' fluid basic content='Follow'/>
+                        <Button as={Link} to="" color='teal' fluid basic content='Follow User'/>
                       }
                     </Segment>
                 </Grid.Column>

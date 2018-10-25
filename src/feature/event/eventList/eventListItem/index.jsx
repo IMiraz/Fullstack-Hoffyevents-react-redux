@@ -7,7 +7,7 @@ import {objectToArray} from '../../../../common/util/helpers'
 
  class EventListItem extends Component {
   render() {
-       const {event, deleteEvent} = this.props
+       const {event} = this.props
     return (
              <Segment.Group>
                 <Segment>
@@ -43,7 +43,7 @@ import {objectToArray} from '../../../../common/util/helpers'
                 </Segment>
                 <Segment clearing>
                 <span>{event.description}</span>
-                <Button onClick={deleteEvent(event.id)} as="a" color="red" floated="right" content="Delete" />
+               
                   {/* <Button as="a" onClick={handlerEditEventOpen(event)} color="teal" floated="right" content="View" /> */}
                   <Button as={Link} to={`/event/${event.id}`} color="teal" floated="right" content="View" />
                 </Segment>
