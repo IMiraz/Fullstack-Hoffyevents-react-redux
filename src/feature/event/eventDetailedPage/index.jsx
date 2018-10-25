@@ -8,6 +8,7 @@ import EventDetailedInfo from './eventDetailedInfo'
 import EventDetailedChat from './eventDetailedChat'
 import EventDetailedSidebar  from './eventDetailedSidebar'
 import {objectToArray} from '../../../common/util/helpers'
+import {goingEvent} from '../../user/userActionCreator'
 
 
 const mapStateToProps = (state) => {
@@ -26,24 +27,27 @@ const mapStateToProps = (state) => {
 
 }
 
+const actions = {
+  goingEvent
+} 
+
 
 class EventDetailedPage extends Component {
 
  async componentDidMount() {
    const {firestore , match, history} = this.props;
-   let event = await firestore.get(`events/${match.params.id}`);
-   if(!event.exists) {
-     history.push('/events');
-     toastr.error('error', 'No event found')
-     
-   }
-  
- }
+   await firestore.setListener(`events/${match.params.id}`);
+  }
+
+  async componentWillUnmount(){
+    const {firestore , match, history} = this.props;
+   await firestore.unsetListener(`events/${match.params.id}`);
+  }
 
 
 
   render() {
-     const {event, auth} = this.props
+     const {event, auth, goingEvent} = this.props
      const attendees =  event &&  event.attendees && objectToArray(event.attendees);
      const isHost = event.hostUid === auth.uid;
      const isGoing = attendees && attendees.some(a => a.id === auth.uid);
@@ -51,7 +55,12 @@ class EventDetailedPage extends Component {
       <div>
         <Grid>
       <GridColumn width={10}>
-      <EventDetailedHeader event={event} isHost ={isHost} isGoing={isGoing}/>
+      <EventDetailedHeader 
+      event={event} 
+      isHost ={isHost}
+      isGoing={isGoing}
+      goingEvent={goingEvent}
+      />
       <EventDetailedInfo event={event}/>
       <EventDetailedChat event={event}/>
       </GridColumn>
@@ -65,4 +74,4 @@ class EventDetailedPage extends Component {
   }
 }
 
-export default withFirestore(connect(mapStateToProps) (EventDetailedPage))
+export default withFirestore(connect(mapStateToProps, actions) (EventDetailedPage))
