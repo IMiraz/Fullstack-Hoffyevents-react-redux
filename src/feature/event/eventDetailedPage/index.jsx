@@ -8,7 +8,7 @@ import EventDetailedInfo from './eventDetailedInfo'
 import EventDetailedChat from './eventDetailedChat'
 import EventDetailedSidebar  from './eventDetailedSidebar'
 import {objectToArray} from '../../../common/util/helpers'
-import {goingEvent} from '../../user/userActionCreator'
+import {goingEvent,CancelGoingToEvent} from '../../user/userActionCreator'
 
 
 const mapStateToProps = (state) => {
@@ -28,7 +28,9 @@ const mapStateToProps = (state) => {
 }
 
 const actions = {
-  goingEvent
+  goingEvent,
+  CancelGoingToEvent
+  
 } 
 
 
@@ -47,7 +49,7 @@ class EventDetailedPage extends Component {
 
 
   render() {
-     const {event, auth, goingEvent} = this.props
+     const {event, auth, goingEvent, CancelGoingToEvent} = this.props
      const attendees =  event &&  event.attendees && objectToArray(event.attendees);
      const isHost = event.hostUid === auth.uid;
      const isGoing = attendees && attendees.some(a => a.id === auth.uid);
@@ -60,6 +62,7 @@ class EventDetailedPage extends Component {
       isHost ={isHost}
       isGoing={isGoing}
       goingEvent={goingEvent}
+      CancelGoingToEvent={CancelGoingToEvent}
       />
       <EventDetailedInfo event={event}/>
       <EventDetailedChat event={event}/>

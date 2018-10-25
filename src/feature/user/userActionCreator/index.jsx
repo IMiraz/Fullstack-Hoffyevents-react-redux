@@ -144,10 +144,27 @@ export const goingEvent =(event) => {
              console.log(error)
              toastr.error('Oops', 'problem signup up to event')
          }
-
-
     }
+}
 
 
+export const CancelGoingToEvent =(event) => {
+     return async(dispatch, getState,{getFirestore}) => {
+         const firestore = getFirestore();
+         const user=firestore.auth().currentUser;
+
+         try {
+             await firestore.update(`events/${event.id}`,{
+              [`attendees.${user.uid}`]:firestore.FieldValue.delete()   
+             })
+             await firestore.delete(`event_attendee/${event.id}_${user.uid}`);
+             toastr.success('Success', 'You have removeed yourself from the event');
+
+         } catch(error) {
+          console.log(error)
+          toastr.error('Success', 'Something went wrong');
+         }
+
+     }
 
 }
