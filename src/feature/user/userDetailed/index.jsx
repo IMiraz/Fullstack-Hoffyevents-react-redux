@@ -10,6 +10,7 @@ import UserDetailedSideBar from './userdetailedSidebar'
 import UserDetailedPhotos from './userDetailedPhotos'
 import UserDetailedEvent from './userDetailedEvent'
 import {UserDetailedQuery} from '../userQuery'
+import LoadingComponent from '../../Loader'
 
 
 
@@ -31,7 +32,8 @@ const  mapState =(state, ownProps)=> {
         profile,
         userUid, 
         auth:state.firebase.auth,
-        photos:state.firestore.ordered.photos
+        photos:state.firestore.ordered.photos,
+        requesting:state.firestore.status.requesting
      }
    
 }
@@ -39,8 +41,11 @@ const  mapState =(state, ownProps)=> {
 class UserDetailedPage extends Component {
 
     render() {
-       const  {profile, auth, photos, match} = this.props;
+       const  {profile, auth, photos, match, requesting} = this.props;
        const isCurrentUser = auth.uid === match.params.id;
+ const loading=Object.values(requesting).some(a => a === true);
+
+if(loading) return <LoadingComponent inverted={true}/>
         return (
             <Grid>
               <UserdetailedHeader profile={profile}/>
