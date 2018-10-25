@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Grid, GridColumn, Button } from 'semantic-ui-react';
-import {firestoreConnect} from 'react-redux-firebase'
+import {firestoreConnect, isLoaded, isEmpty} from 'react-redux-firebase'
 import EventList from '../eventList'
 import EventForm from '../eventForm'
 import {connect}  from 'react-redux'
@@ -10,7 +10,7 @@ import LoaderComponent from '../../Loader'
 
 const mapState = state => ({
   events: state.firestore.ordered.events,
-  loading: state.async.loading
+
 });
 
 
@@ -35,9 +35,9 @@ handleDeleteEvent = (eventId) => () => {
 
   render()
   {
-    const {loading, events} = this.props
+    const {events} = this.props
  
-    if(loading) return <LoaderComponent inverted={true}/>
+    if(!isLoaded(events)|| isEmpty(events)) return <LoaderComponent inverted={true}/>
   
     return (
         <Grid>
