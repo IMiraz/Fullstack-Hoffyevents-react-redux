@@ -6,6 +6,7 @@ import {fetchSampleData} from '../../../Data/MockApi'
 import {createNewEvent} from '../../../../common/util/helpers'
 import { getFirebase } from 'react-redux-firebase';
 import moment from 'moment'
+import firebase from '../../../../config/index'
 
 
 
@@ -104,11 +105,29 @@ export const CancelToggle = (cancelled, eventId) => {
     }
 }
 
-export const deleteEvent = (eventId) => {
-    return {
-        type:DELETE_EVENT,
-        payload:{
-            eventId
-        }
-    }
-}
+export const getEventsForDashboard = () => {
+    return async (dispatch, getState) => {
+       let today = new Date(Date.now());
+       const firestore = firebase.firestore();
+       const eventsQuery = firestore.collection('events').where('date', '>=', today)
+   // console.log(eventsQuery);
+   try{
+       dispatch(AsyncActionStart())
+       let querySnap = await eventsQuery.get()
+       let events =[];
+
+       for(let i=0; i<querySnap.docs.length; i++) {
+           let evt = {...querySnap.docs[i].data(), id:querySnap.docs[i].id};
+           events.push(evt)
+       }
+       dispatch({type:FETCH_EVENT, payload:{events}})
+       dispatch(AsyncActionFinished())
+
+   } catch(error) {
+       dispatch(AsyncActionError())
+        console.log(error)
+   }
+
+     }
+   
+   }

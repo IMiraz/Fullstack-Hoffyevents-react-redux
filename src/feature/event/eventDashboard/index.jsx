@@ -5,39 +5,35 @@ import EventList from '../eventList'
 import EventForm from '../eventForm'
 import {connect}  from 'react-redux'
 import cuid from 'cuid'
-import { deleteEvent} from '../../event/eventActions/actionsCreator'
+import {getEventsForDashboard} from '../../event/eventActions/actionsCreator'
 import LoaderComponent from '../../Loader'
 
 const mapState = state => ({
-  events: state.firestore.ordered.events,
-
+  events:state.event,
+  loading:state.async.loading
 });
 
 
 const actions ={
-  deleteEvent
+ getEventsForDashboard
 }
 
 
 
 class EventDashboard extends Component {
 
+  componentDidMount() {
+    this.props.getEventsForDashboard()
+  }
 
 
-handleDeleteEvent = (eventId) => () => {
 
-  this.props.deleteEvent(eventId);
-  // const updatedEvents = this.state.events.filter(e => e.id !== eventId);
-  // this.setState({
-  //   events: updatedEvents
-  // })
-}
 
   render()
   {
-    const {events} = this.props
+    const {events, loading} = this.props
  
-    if(!isLoaded(events)|| isEmpty(events)) return <LoaderComponent inverted={true}/>
+    if(loading) return <LoaderComponent inverted={true}/>
   
     return (
         <Grid>
