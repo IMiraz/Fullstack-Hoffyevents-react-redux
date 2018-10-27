@@ -7,6 +7,7 @@ import {createNewEvent} from '../../../../common/util/helpers'
 import { getFirebase } from 'react-redux-firebase';
 import moment from 'moment'
 import firebase from '../../../../config/index'
+import { __await } from 'tslib';
 
 
 
@@ -105,15 +106,35 @@ export const CancelToggle = (cancelled, eventId) => {
     }
 }
 
-export const getEventsForDashboard = () => {
+export const getEventsForDashboard = (lastEvent) => {
     return async (dispatch, getState) => {
        let today = new Date(Date.now());
        const firestore = firebase.firestore();
-       const eventsQuery = firestore.collection('events').where('date', '>=', today)
+       const eventsRef = firestore.collection('events')
    // console.log(eventsQuery);
    try{
        dispatch(AsyncActionStart())
-       let querySnap = await eventsQuery.get()
+
+    let startAfter= lastEvent && await firestore.collection('events').doc(lastEvent.id).get();
+    let query;
+    
+    lastEvent ? query= eventsRef
+        .where('date', '>=', today)
+        .orderBy('date')
+        .startAfter(startAfter)
+    .limit(2)
+
+        :query = eventsRef
+        .where('date', '>=', today)
+        .orderBy('date')
+        .limit(2) 
+       let querySnap = await query.get()
+
+       if(querySnap.docs.length === 0){
+           dispatch(AsyncActionFinished())
+           return querySnap;
+       }
+
        let events =[];
 
        for(let i=0; i<querySnap.docs.length; i++) {
@@ -122,6 +143,7 @@ export const getEventsForDashboard = () => {
        }
        dispatch({type:FETCH_EVENT, payload:{events}})
        dispatch(AsyncActionFinished())
+       return querySnap;
 
    } catch(error) {
        dispatch(AsyncActionError())

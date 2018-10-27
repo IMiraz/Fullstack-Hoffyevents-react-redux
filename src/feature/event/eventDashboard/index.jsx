@@ -22,8 +22,35 @@ const actions ={
 
 class EventDashboard extends Component {
 
-  componentDidMount() {
-    this.props.getEventsForDashboard()
+   state = {
+    moreEvesnt:false
+   }
+
+  async componentDidMount() {
+   let next = await this.props.getEventsForDashboard()
+   console.log('next',next)
+
+   if(next && next.docs && next.docs.length > 1) {
+     this.setState({
+       moreEvesnt:true
+     })
+   }
+
+  }
+
+  getNextEvents = async () => {
+    const {events}= this.props;
+    let lastEvent = events && events[events.length -1];
+    console.log(lastEvent);
+    let next = await this.props.getEventsForDashboard(lastEvent);
+    console.log(next);
+    if(next && next.docs.length <= 1) {
+      this.setState({
+        moreEvesnt:false
+      })
+    }
+
+
   }
 
 
@@ -43,10 +70,18 @@ class EventDashboard extends Component {
            handlerEditEventOpen={this.handlerEditEventOpen}
           deleteEvent={this.handleDeleteEvent}
             />
+
+            <Button 
+            onClick={this.getNextEvents} 
+            disabled={!this.state.moreEvesnt}
+            content="More"
+            color="green"
+            floated="right"
+            />
           
            </GridColumn>
            <GridColumn width={6}>
-          
+    
            </GridColumn>
         </Grid>
     )
