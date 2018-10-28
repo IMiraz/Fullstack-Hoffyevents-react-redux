@@ -98,7 +98,7 @@ class EventDashboard extends Component {
            <GridColumn width={6}>
            </GridColumn>
            <GridColumn width={10}>
-          <Loader active={true}/>
+          <Loader active={loading}/>
            </GridColumn>
         </Grid>
     )
