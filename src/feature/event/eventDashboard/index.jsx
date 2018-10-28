@@ -23,7 +23,8 @@ const actions ={
 class EventDashboard extends Component {
 
    state = {
-    moreEvesnt:false
+    moreEvesnt:false,
+    initalLoding:true
    }
 
   async componentDidMount() {
@@ -32,7 +33,8 @@ class EventDashboard extends Component {
 
    if(next && next.docs && next.docs.length > 1) {
      this.setState({
-       moreEvesnt:true
+       moreEvesnt:true,
+       initalLoding:false
      })
    }
 
@@ -60,7 +62,7 @@ class EventDashboard extends Component {
   {
     const {events, loading} = this.props
  
-    if(loading) return <LoaderComponent inverted={true}/>
+    if(this.state.initalLoding) return <LoaderComponent inverted={true}/>
   
     return (
         <Grid>
@@ -77,6 +79,7 @@ class EventDashboard extends Component {
             content="More"
             color="green"
             floated="right"
+            loading={loading}
             />
           
            </GridColumn>
