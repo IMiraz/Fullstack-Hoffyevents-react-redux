@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, GridColumn, Button } from 'semantic-ui-react';
+import { Grid, GridColumn, Loader } from 'semantic-ui-react';
 import {firestoreConnect, isLoaded, isEmpty} from 'react-redux-firebase'
 import EventList from '../eventList'
 import EventForm from '../eventForm'
@@ -23,7 +23,7 @@ const actions ={
 class EventDashboard extends Component {
 
    state = {
-    moreEvesnt:false,
+    moreEvents:false,
     initalLoding:true,
     loadedEvents:[]
    }
@@ -34,7 +34,7 @@ class EventDashboard extends Component {
 
    if(next && next.docs && next.docs.length > 1) {
      this.setState({
-       moreEvesnt:true,
+       moreEvents:true,
        initalLoding:false
      })
    }
@@ -57,22 +57,20 @@ class EventDashboard extends Component {
     console.log(lastEvent);
     let next = await this.props.getEventsForDashboard(lastEvent);
     console.log(next);
-    if(next && next.docs.length <= 1) {
+    if(next && next.docs && next.docs.length <= 1) {
       this.setState({
-        moreEvesnt:false
+        moreEvents:false
       })
     }
 
 
   }
 
-
-
-
   render()
   {
     console.log(this.state.loadedEvents)
-    const {events, loading} = this.props
+    const {events, loading} = this.props;
+    const {moreEvents, loadedEvents}= this.state;
  
     if(this.state.initalLoding) return <LoaderComponent inverted={true}/>
   
@@ -80,23 +78,27 @@ class EventDashboard extends Component {
         <Grid>
            <GridColumn width={10}> 
            <EventList
-           events={this.state.loadedEvents}
-           handlerEditEventOpen={this.handlerEditEventOpen}
-          deleteEvent={this.handleDeleteEvent}
+           events={loadedEvents}
+           loading={loading}
+           moreEvents={moreEvents}
+           getNextEvents={this.getNextEvents}
+    
             />
-
-            <Button 
+ {/* this is more events button  paging:P */}
+            {/* <Button 
             onClick={this.getNextEvents} 
             disabled={!this.state.moreEvesnt}
-            content="More"
+             content="More"
             color="green"
             floated="right"
             loading={loading}
-            />
+            /> */}
           
            </GridColumn>
            <GridColumn width={6}>
-    
+           </GridColumn>
+           <GridColumn width={10}>
+          <Loader active={true}/>
            </GridColumn>
         </Grid>
     )
