@@ -24,7 +24,8 @@ class EventDashboard extends Component {
 
    state = {
     moreEvesnt:false,
-    initalLoding:true
+    initalLoding:true,
+    loadedEvents:[]
    }
 
   async componentDidMount() {
@@ -37,6 +38,16 @@ class EventDashboard extends Component {
        initalLoding:false
      })
    }
+
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(this.props.events !== nextProps.events)
+    {
+       this.setState({
+         loadedEvents:[...this.state.loadedEvents, ...nextProps.events]
+       })
+    }
 
   }
 
@@ -60,6 +71,7 @@ class EventDashboard extends Component {
 
   render()
   {
+    console.log(this.state.loadedEvents)
     const {events, loading} = this.props
  
     if(this.state.initalLoding) return <LoaderComponent inverted={true}/>
@@ -68,7 +80,7 @@ class EventDashboard extends Component {
         <Grid>
            <GridColumn width={10}> 
            <EventList
-           events={events}
+           events={this.state.loadedEvents}
            handlerEditEventOpen={this.handlerEditEventOpen}
           deleteEvent={this.handleDeleteEvent}
             />
