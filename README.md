@@ -1,12 +1,13 @@
 ## Fullstack-Hoffyevents-react-redux
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About
 
-Below you will find some information on how to perform common tasks.<br>
-You can find the most recent version of this guide [here](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md).
+ `this is  my learning based project done 90% work, I always wished I'd had a social network for event publishing to find other event publisher  to collaborate with. It's like Hoffyevent, except instead of dates it's for finding event location to city with and make tracks. View all users, view each user's profile and information,  see similar users in the sidebar. this is also can track users activity`
+
+ 
 
 ## Feature
-- `Welcome landing page`
+- `Welcome landing page,`
 <img src="src/assets/home.png" width="800" height="400">
 
 - `Show all events list in home`
@@ -23,12 +24,13 @@ You can find the most recent version of this guide [here](https://github.com/fac
 
 - `View event detalies`
 <img src="src/assets/eventviewuser.png" width="800" height="400">
-- `Track event location through react-google-map `
+- `Track event location through react-google-map`
 <img src="src/assets/map.png" width="800" height="400">
 
-- `uses google auto completed location track in create event page `
+- `uses google auto completed location track in create event page`
 <img src="src/assets/autolocationshow.png" width="800" height="400">
-- `Cool photo uploaded with react drope zone `
+
+- `Cool photo uploaded with react drope zone`
 <img src="src/assets/photoupload.png" width="800" height="400">
 
 - `User profile information dashboard`
@@ -43,11 +45,14 @@ You can find the most recent version of this guide [here](https://github.com/fac
 - `event detailed view for  hoster `
 <img src="src/assets/eventviewhost.png" width="800" height="400">
 
-- `user can cancel or active their own events `
+- `user can cancel or active their own events`
 <img src="src/assets/eventactivecancle.png" width="800" height="400">
 
-- `event chat futurer look , but didn't work yet:/ `
+- `event chat futurer look , but didn't work yet:/`
 <img src="src/assets/chat.png" width="800" height="400">
+
+
+
 ## Following technologies are used
 
 - `React`
@@ -82,10 +87,17 @@ You can find the most recent version of this guide [here](https://github.com/fac
  
      
 
-  
+## Supported Browsers
+
+`By default, the generated project supports all modern browsers.`  
    
 
-## Updating to New Releases
+## Scripts
+
+- `npm run clean` Deletes Build files of Server and Client
+- `npm run build` Builds Server and Client
+- `npm run start` Start server in production environment
+- `npm run development` Start server in development environment
 
 
                                                                                                                                                                                                                                                                                                                                                                      
