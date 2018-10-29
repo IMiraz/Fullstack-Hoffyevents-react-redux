@@ -6,8 +6,8 @@ Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
 ## Feature
-
-<img src="src/assets/home.png" width="300" height="200">
+- `Welcome landing page`
+<img src="src/assets/home.png" width="500" height="500">
 
 
 ## Following technologies are used
