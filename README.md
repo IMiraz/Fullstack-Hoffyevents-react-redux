@@ -8,7 +8,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
 ## Following technologies tools are used
 
 
-- `## React`
+ - ### `React`
   - `React-router`
   - `react-lazyload`
   - `react-infinite-scroller`
@@ -84,7 +84,7 @@ They will not be included in the production build so you can use them for things
 
 In the project directory, you can run:
 
-### `npm start`
+
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
