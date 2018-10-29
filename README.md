@@ -7,24 +7,20 @@ You can find the most recent version of this guide [here](https://github.com/fac
 
 ## Following technologies tools are used
 
-- `React`
-- `React-router`
-- `react-cropper`
-- `react-dropzone`
-- `react-infinite-scroller`
-- `react-lazyload`
-- `react-load-script`
-- `react-infinite-scroller`
-- `react-places-autocomplete`
-- `react-dropzone`
-- `react-infinite-scroller`
-- 
 
-- `React`
+- `## React`
   - `React-router`
   - `react-lazyload`
   - `react-infinite-scroller`
-  - `react-places-autocomplete` 
+  - `react-places-autocomplete`
+  - `react-dropzone`
+  - `react-loadable`
+  - `react-load-script`
+  - `react-places-autocomplete`
+  - `react-datepicker`
+  - `react-dom`
+  - `react-router-dom`
+   
 
 ## Updating to New Releases
 
