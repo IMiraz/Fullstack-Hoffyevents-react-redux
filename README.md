@@ -5,11 +5,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
-## Following technologies tools are used
+## Following technologies are used
 
-
- - ### `React`
+- `React`
   - `React-router`
+  - `google-map-react`
   - `react-lazyload`
   - `react-infinite-scroller`
   - `react-places-autocomplete`
@@ -20,6 +20,26 @@ You can find the most recent version of this guide [here](https://github.com/fac
   - `react-datepicker`
   - `react-dom`
   - `react-router-dom`
+  - `react-cropper`
+- `Redux`
+  - `react-redux`
+  - `react-redux-toastr`
+  - `redux-auth-wrapper`
+  - `redux-form`
+  - `redux-thunk`  
+  - `redux-firestore`
+
+- `Firebase`
+- `Semantic-ui-react`
+- `Revalidate`
+- `Moment`
+- `Date-fns`
+- `Yarn`
+  
+ 
+     
+
+  
    
 
 ## Updating to New Releases
@@ -84,7 +104,7 @@ They will not be included in the production build so you can use them for things
 
 In the project directory, you can run:
 
-
+### `npm start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
