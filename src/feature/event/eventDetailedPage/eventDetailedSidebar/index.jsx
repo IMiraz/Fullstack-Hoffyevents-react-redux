@@ -24,13 +24,13 @@ const eventDetailedSidebar = ({attendees,isHost}) => {
         {attendees && attendees.map(attened => (
  <Item key={attened.id} style={{ position: 'relative' }}>
  
- <Label
-   style={{ position: 'absolute' }}
-   color="orange"
-   ribbon="right"
- >
- Host
- </Label>
+ {/* <Label
+//    style={{ position: 'absolute' }}
+//    color="orange"
+//    ribbon="right"
+//  >
+ 
+ </Label> */}
 
  <Item.Image size="tiny" as={Link} to={`/profile/${attendees.id}`} src={attened.photoURL} />
  <Item.Content verticalAlign="middle">
