@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Grid, GridColumn} from 'semantic-ui-react'
-import {withFirestore} from 'react-redux-firebase'
+import {withFirestore, firebaseConnect} from 'react-redux-firebase'
+import {compose} from 'redux'
 import {connect} from 'react-redux'
 import EventDetailedHeader from './eventDetailedHeader'
 import EventDetailedInfo from './eventDetailedInfo'
@@ -8,6 +9,7 @@ import EventDetailedChat from './eventDetailedChat'
 import EventDetailedSidebar  from './eventDetailedSidebar'
 import {objectToArray} from '../../../common/util/helpers'
 import {goingEvent,CancelGoingToEvent} from '../../user/userActionCreator'
+import {addEventComment} from '../eventActions/actionsCreator'
 
 
 const mapStateToProps = (state) => {
@@ -28,7 +30,8 @@ const mapStateToProps = (state) => {
 
 const actions = {
   goingEvent,
-  CancelGoingToEvent
+  CancelGoingToEvent,
+  addEventComment
   
 } 
 
@@ -48,7 +51,7 @@ class EventDetailedPage extends Component {
 
 
   render() {
-     const {event, auth, goingEvent, CancelGoingToEvent} = this.props
+     const {event, auth, goingEvent, CancelGoingToEvent, addEventComment} = this.props
      const attendees =  event &&  event.attendees && objectToArray(event.attendees);
      const isHost = event.hostUid === auth.uid;
      const isGoing = attendees && attendees.some(a => a.id === auth.uid);
@@ -64,7 +67,10 @@ class EventDetailedPage extends Component {
       CancelGoingToEvent={CancelGoingToEvent}
       />
       <EventDetailedInfo event={event}/>
-      <EventDetailedChat event={event}/>
+      <EventDetailedChat
+       addEventComment={addEventComment}
+       eventId={event.id}
+       />
       </GridColumn>
       <GridColumn width={6}>
        <EventDetailedSidebar
@@ -79,4 +85,8 @@ class EventDetailedPage extends Component {
   }
 }
 
-export default withFirestore(connect(mapStateToProps, actions) (EventDetailedPage))
+export default compose(
+  withFirestore,
+  connect(mapStateToProps, actions),
+  firebaseConnect((props) => ([`event_chat/${props.match.params.id}`]))
+)   (EventDetailedPage)
