@@ -156,7 +156,7 @@ export const getEventsForDashboard = (lastEvent) => {
 
    export const addEventComment = (eventId, comment) => {
 
-    async(dispatch,getState,{getFirebase}) => {
+   return async(dispatch,getState,{getFirebase}) => {
         const firebase = getFirebase();
          try {
              await firebase.push(`event_chat/${eventId}`, comment)
