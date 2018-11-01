@@ -48,8 +48,6 @@
 - `user can cancel or active their own events`
 <img src="src/assets/eventactivecancle.png" width="800" height="400">
 
-- `event chat futurer look , but didn't work yet:/`
-<img src="src/assets/chat.png" width="800" height="400">
 
 
 
