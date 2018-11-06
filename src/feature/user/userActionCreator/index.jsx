@@ -2,6 +2,8 @@ import moment from 'moment';
 import {toastr} from 'react-redux-toastr';
 import cuid from 'cuid'
 import {AsyncActionStart, AsyncActionFinished, AsyncActionError} from '../../Async/AsyncActionCreator'
+import firebase from '../../../config/index'
+
 
 
 export const updateProfile = (user) => {
@@ -168,3 +170,67 @@ export const CancelGoingToEvent =(event) => {
      }
 
 }
+
+
+
+export const getUserEvents =(userUid, activeTab) => {
+
+    return async (dispatch, getState) => {
+        dispatch(AsyncActionStart());
+            const firestore = firebase.firestore();
+            const today = new Date(Date.now());
+            let eventRef= firestore.collection('event_attendee') 
+            let query;
+
+            switch(activeTab) {
+                case 1: //past Events
+                query= eventRef
+                .where('userUid', '==', userUid)
+                .where('eventDate', '<=',today)
+                .orderBy('eventDate', 'desc');
+                break;
+
+                case 2: //future Events
+                query= eventRef
+                .where('userUid', '==', userUid)
+                .where('eventDate', '>=',today)
+                .orderBy('eventDate');
+                break;
+
+                case 2: //hosted Events
+                query= eventRef
+                .where('userUid', '==', userUid)
+                .where('host', '==',true)
+                .orderBy('eventDate','dsc');
+                break;
+                default:
+                query= eventRef
+                .where('userUid', '==', userUid)
+                .orderBy('eventDate','dsc');
+
+            }
+            try {
+                 let querySnap = await query.get();
+                 console.log(querySnap)
+            }
+              catch(error) {
+                  console.log(error)
+                  dispatch(AsyncActionError())
+              }
+
+        
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+

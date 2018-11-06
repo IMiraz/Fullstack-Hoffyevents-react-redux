@@ -41,18 +41,20 @@ const  mapState =(state, ownProps)=> {
 class UserDetailedPage extends Component {
 
     render() {
-       const  {profile, auth, photos, match, requesting} = this.props;
+
+       const  {profile, auth, photos, match, requesting } = this.props;
+
        const isCurrentUser = auth.uid === match.params.id;
  const loading=Object.values(requesting).some(a => a === true);
 
-if(loading) return <LoadingComponent inverted={true}/>
+  if(loading) return <LoadingComponent inverted={true}/>
         return (
             <Grid>
               <UserdetailedHeader profile={profile}/>
               <UserDetailedDescription profile={profile}/>
               <UserDetailedSideBar isCurrentUser={isCurrentUser}/>
               <UserDetailedPhotos photos={photos}/>
-              <UserDetailedEvent/>
+              <UserDetailedEvent events={events} eventsLoading={eventsLoading}/>
               
             </Grid>
 
