@@ -45,6 +45,8 @@ const actions = {
     getUserEvents
 }
 
+
+
 class UserDetailedPage extends Component {
 
     async componentDidMount() {
@@ -52,6 +54,10 @@ class UserDetailedPage extends Component {
 
     }
 
+
+    changeTab = (e, data) => {
+        this.props.getUserEvents(this.props.userUid, data.activeIndex)
+       }
 
     render() {
 
@@ -67,7 +73,7 @@ class UserDetailedPage extends Component {
               <UserDetailedDescription profile={profile}/>
               <UserDetailedSideBar isCurrentUser={isCurrentUser}/>
               <UserDetailedPhotos photos={photos}/>
-              <UserDetailedEvent events={events} eventLoading={eventLoading}/>
+              <UserDetailedEvent events={events} eventLoading={eventLoading} changeTab={this.changeTab}/>
               
             </Grid>
 

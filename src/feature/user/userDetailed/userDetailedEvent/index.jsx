@@ -10,13 +10,13 @@ const panes = [
 ]
 
 
-const  UserDetailedEvent = ({events, eventLoading}) => {
+const  UserDetailedEvent = ({events, eventLoading, changeTab}) => {
   return (
     <Grid.Column width={12}>
     <Segment attached loading={eventLoading}>
         <Header icon='calendar' content='Events'/>
-       <Tab panes={panes} menu={{secondary:true, pointing:true}}/>
-
+       <Tab onTabChange={(e, data) => changeTab(e, data)} panes={panes} menu={{secondary:true, pointing:true}}/>
+ <br/>
         <Card.Group itemsPerRow={5}>
   
       {events && events.map(event => (
