@@ -3,6 +3,7 @@ import {toastr} from 'react-redux-toastr';
 import cuid from 'cuid'
 import {AsyncActionStart, AsyncActionFinished, AsyncActionError} from '../../Async/AsyncActionCreator'
 import firebase from '../../../config/index'
+import {FETCH_EVENT} from '../../event/eventActions/actionsType'
 
 
 
@@ -197,21 +198,30 @@ export const getUserEvents =(userUid, activeTab) => {
                 .orderBy('eventDate');
                 break;
 
-                case 2: //hosted Events
+                case 3: //hosted Events
                 query= eventRef
                 .where('userUid', '==', userUid)
                 .where('host', '==',true)
-                .orderBy('eventDate','dsc');
+                .orderBy('eventDate','desc');
                 break;
                 default:
                 query= eventRef
                 .where('userUid', '==', userUid)
-                .orderBy('eventDate','dsc');
+                .orderBy('eventDate','desc');
 
-            }
+            } 
             try {
                  let querySnap = await query.get();
-                 console.log(querySnap)
+
+                 let events =[];
+
+                 for(let i=0; i<querySnap.docs.length; i++) {
+                     let evt = await firestore.collection('events').doc(querySnap.docs[i].data().eventId).get();
+                     events.push({...evt.data(), id: evt.id})
+                 }
+                 dispatch({type:FETCH_EVENT, payload:{events}})
+                
+                 dispatch(AsyncActionFinished())
             }
               catch(error) {
                   console.log(error)
