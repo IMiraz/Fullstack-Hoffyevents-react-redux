@@ -116,6 +116,7 @@ export const getEventsForDashboard = (lastEvent) => {
        dispatch(AsyncActionStart())
 
     let startAfter= lastEvent && await firestore.collection('events').doc(lastEvent.id).get();
+    console.log('startAfter',startAfter);
     let query;
     
     lastEvent ? query= eventsRef

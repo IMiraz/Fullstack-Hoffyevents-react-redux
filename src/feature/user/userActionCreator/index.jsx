@@ -174,30 +174,21 @@ export const CancelGoingToEvent =(event) => {
 
 
 
-export const getUserEvents =(userUid, activeTab, lastEvent) => {
+export const getUserEvents =(userUid, activeTab) => {
 
     return async (dispatch, getState) => {
         dispatch(AsyncActionStart());
-    
             const firestore = firebase.firestore();
             const today = new Date(Date.now());
             let eventRef= firestore.collection('event_attendee') 
-            let startAfter = lastEvent && await firestore
-            .collection('event_attendee').doc(lastEvent.id).get();
             let query;
 
             switch(activeTab) {
                 case 1: //past Events
-               lastEvent ? query= eventRef
+                query= eventRef
                 .where('userUid', '==', userUid)
                 .where('eventDate', '<=',today)
-                .orderBy('eventDate', 'desc')
-                .startAfter(startAfter).limit(2)
-                :query= eventRef
-                .where('userUid', '==', userUid)
-                .where('eventDate', '<=',today)
-                .orderBy('eventDate', 'desc')
-                .limit(2)
+                .orderBy('eventDate', 'desc');
                 break;
 
                 case 2: //future Events
@@ -214,22 +205,13 @@ export const getUserEvents =(userUid, activeTab, lastEvent) => {
                 .orderBy('eventDate','desc');
                 break;
                 default:
-                lastEvent? query= eventRef
+                query= eventRef
                 .where('userUid', '==', userUid)
-                .orderBy('eventDate','desc')
-                .startAfter(startAfter).limit(2)
-                :query= eventRef
-                .where('userUid', '==', userUid)
-                .orderBy('eventDate','desc').limit(2);
+                .orderBy('eventDate','desc');
 
             } 
             try {
                  let querySnap = await query.get();
-                 
-                 if(querySnap.docs.length === 0) {
-                     dispatch(AsyncActionFinished())
-                     return;
-                 }
 
                  let events =[];
 
@@ -240,7 +222,6 @@ export const getUserEvents =(userUid, activeTab, lastEvent) => {
                  dispatch({type:FETCH_EVENT, payload:{events}})
                 
                  dispatch(AsyncActionFinished())
-                 return querySnap;
             }
               catch(error) {
                   console.log(error)

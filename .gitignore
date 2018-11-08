@@ -18,3 +18,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+functions/node_modules/**
+functions/node_modules/.bin/js-yaml.cmd
