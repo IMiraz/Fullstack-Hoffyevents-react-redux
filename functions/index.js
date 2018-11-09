@@ -14,7 +14,6 @@ exports.userfollowing = functions.firestore
     .doc(followerUid)
     console.log(followerDoc);
 
-
     return followerDoc.get().then(doc => {
         let userData = doc.data();
         console.log({ userData});
@@ -28,7 +27,7 @@ exports.userfollowing = functions.firestore
         .collection('users')
         .doc(followingUid)
         .collection('followers')
-        .doc(followingUid)
+        .doc(followerUid)
         .set(follower);
 
     });
