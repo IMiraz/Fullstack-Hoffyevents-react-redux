@@ -64,9 +64,10 @@ class UserDetailedPage extends Component {
     render() {
 
        const  {profile, auth, photos, match, requesting, events, eventLoading, followUser, following } = this.props;
-
+          console.log('following data', following);
        const isCurrentUser = auth.uid === match.params.id;
-       const isFollowing=isEmpty(following)
+       const isFollowing=!isEmpty(following)
+       console.log('isFollowing',isFollowing)
  const loading=Object.values(requesting).some(a => a === true);
 
   if(loading) return <LoadingComponent inverted={true}/>
